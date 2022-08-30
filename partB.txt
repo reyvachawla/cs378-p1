@@ -1,2 +1,2 @@
+147
 grep INFO < log.txt | wc -l
-1
