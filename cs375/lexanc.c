@@ -34,19 +34,107 @@
    12345 123    345  357
    */
 
+char * op[] = {"+", "-", "*", "/", ":=", "=", "<>", "<", "<=", ">=", ">", "^", ".",
+               "and", "or", "not", "div", "mod", "in"};
+
+char * delim[] = {",", ";", ":", "(", ")", "[", "]", ".."};
+
+char * reserved[] = {"array", "begin", "case", "const", "do",
+			"downto", "else", "end", "file", "for", "function", "goto", "if",
+			"label", "nil", "of", "packed", "procedure", "program", "record",
+			"repeat", "set", "then", "to", "type", "until", "var", "while",
+			"with"};
+
 /* Skip blanks and whitespace.  Expand this function to skip comments too. */
 void skipblanks ()
-  {
-      int c;
-      while ((c = peekchar()) != EOF
-             && (c == ' ' || c == '\n' || c == '\t'))
+  { int c;
+    int c2; 
+    while ((c = peekchar()) != EOF) {
+      // for whitespace
+      if (c == ' ' || c == '\n' || c == '\t') {
+        getchar(); 
+      }
+      // for comments
+      else if (c == '{') {
+        getchar();
+        // check next char to find corresponding bracket
+        while ((c = peekchar()) != EOF) {
+          if (c == '}') {
+            getchar();
+            break;
+          }
           getchar();
+        }
+      } else if (c == '(' && (c2 = peek2char()) == '*' && c2 != EOF ) {
+        getchar();
+        getchar();
+        while ((c = peekchar()) !=  EOF && (c2 = peek2char()) != EOF){
+          if (c == '*' || c2 == ')') {
+            getchar();
+            getchar();
+            break;
+          }
+          getchar();
+        }
+      }
+      else {
+        break;
+      }
+    } 
+  }  
+
+int op_search (char * token) {
+  int size = sizeof(op) / sizeof(char *);
+  for (int i = 0; i < size ; i++) {
+    if (strcmp(token, op[i]) == 0) {
+      return i + 1;
     }
+  }
+  return 0;
+}
+
+int res_search (char * token) {
+  int size = sizeof(reserved) / sizeof(char *);
+  for (int i = 0; i < size ; i++) {
+    if (strcmp(token, reserved[i]) == 0) {
+      return i + 1;
+    }
+  }
+  return 0;
+}
+
 
 /* Get identifiers and reserved words */
 TOKEN identifier (TOKEN tok)
-  {
+  { int c;
+    int numc = 0;
+    char string[16];
+    int value = 0;
+    if ((c = peekchar()) != EOF && CHARCLASS[c] == ALPHA) {
+		  c = getchar();
     }
+		string[numc++] = c;
+		while ((c = peekchar()) != EOF && (CHARCLASS[c] == ALPHA || CHARCLASS[c] == NUMERIC)) {
+			c = getchar();
+			if (numc < 15) {
+				string[numc++] = c;
+			}
+		}
+    string[numc] = 0;
+    // reserve or operator not then identifier
+    // how to get correct lookup value
+    if ((value = res_search(string)) != 0) {
+			tok->tokentype = RESERVED;
+			tok->whichval = value;
+		} else if ((value = op_search(string)) != 0) {
+			tok->tokentype = OPERATOR;
+			tok->whichval = value;
+		} else {
+			tok->tokentype = IDENTIFIERTOK;
+			strcpy(tok->stringval, string);
+    }
+    return tok;
+  }
 
 TOKEN getstring (TOKEN tok)
   {
