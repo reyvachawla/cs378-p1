@@ -84,8 +84,7 @@ void skipblanks ()
   }  
 
 int op_search (char * token) {
-  int size = sizeof(op) / sizeof(char *);
-  for (int i = 0; i < size ; i++) {
+  for (int i = 0; i < 18 ; i++) {
     if (strcmp(token, op[i]) == 0) {
       return i + 1;
     }
@@ -94,9 +93,17 @@ int op_search (char * token) {
 }
 
 int res_search (char * token) {
-  int size = sizeof(reserved) / sizeof(char *);
-  for (int i = 0; i < size ; i++) {
+  for (int i = 0; i < 28 ; i++) {
     if (strcmp(token, reserved[i]) == 0) {
+      return i + 1;
+    }
+  }
+  return 0;
+}
+
+int delim_search (char * token) {
+  for (int i = 0; i < 7 ; i++) {
+    if (strcmp(token, delim[i]) == 0) {
       return i + 1;
     }
   }
@@ -113,11 +120,13 @@ TOKEN identifier (TOKEN tok)
     if ((c = peekchar()) != EOF && CHARCLASS[c] == ALPHA) {
 		  c = getchar();
     }
-		string[numc++] = c;
+		string[numc] = c;
+    numc++;
 		while ((c = peekchar()) != EOF && (CHARCLASS[c] == ALPHA || CHARCLASS[c] == NUMERIC)) {
 			c = getchar();
 			if (numc < 15) {
-				string[numc++] = c;
+				string[numc] = c;
+        numc++;
 			}
 		}
     string[numc] = 0;
@@ -127,6 +136,7 @@ TOKEN identifier (TOKEN tok)
 			tok->tokentype = RESERVED;
 			tok->whichval = value;
 		} else if ((value = op_search(string)) != 0) {
+      // word operators
 			tok->tokentype = OPERATOR;
 			tok->whichval = value;
 		} else {
@@ -138,11 +148,70 @@ TOKEN identifier (TOKEN tok)
 
 TOKEN getstring (TOKEN tok)
   {
+    // has to start with ' but can have '' to have a ' in the string
+    int c;
+    int c2;
+    char string[16];
+    int numc = 0; 
+    if ((c = peekchar()) != EOF && c == '\'') {
+      c = getchar();
+      while ((c = peekchar()) != EOF) {
+        c2 = peek2char();  
+        
+        if (c == '\'' && c2 == '\'') {
+          c = getchar();
+          if (numc < 15){
+            string[numc] = c;
+            numc++;
+          }
+          getchar();
+        } else if (c == '\'' && c2 != '\'') {
+          break;
+        } else {
+          c = getchar();
+          if (numc < 15) {
+            string[numc] = c;
+            numc++;
+          }
+        }
+      }
+      getchar();
+      string[numc] = 0;
+      tok->tokentype = STRINGTOK;
+      strcpy(tok->stringval, string);
     }
+    return tok;
+  }
 
 TOKEN special (TOKEN tok)
   {
+    int c;
+    int c2;
+    char special[3];
+    int value = 0;
+    // can be a delimeter of size 1 or 2
+    if ((c = peekchar()) != EOF && CHARCLASS[c] == SPECIAL) {
+      if ((c2 = peek2char()) != EOF && CHARCLASS[c2] == SPECIAL) {
+        c = getchar();
+        c2 = getchar();
+        special[0] = c;
+        special[1] = c2;
+        special[2] = 0;
+      } else {
+        c = getchar();
+        special[0] = c;
+        special[1] = 0;
+      }
     }
+    if((value = op_search(special)) != 0) {
+      tok->tokentype = OPERATOR;
+		  tok->whichval = value;
+    } else if ((value = delim_search(special)) != 0) {
+      tok->tokentype = DELIMITER;
+		  tok->whichval = value;
+    }
+    // error?
+  }
 
 /* Get and convert unsigned numbers of all types. */
 TOKEN number (TOKEN tok)
