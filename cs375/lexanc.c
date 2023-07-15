@@ -53,47 +53,47 @@ double powers[] = {1e0, 1e1, 1e2, 1e3, 1e4, 1e5, 1e6, 1e7, 1e8, 1e9, 1e10, 1e11,
 
 /* Skip blanks and whitespace.  Expand this function to skip comments too. */
 void skipblanks ()
-  { int c;
-    int c2; 
-    while ((c = peekchar()) != EOF) {
-      // for whitespace
-      if (c == ' ' || c == '\n' || c == '\t') {
-        getchar(); 
-      }
-      // for comments
-      else if (c == '{') {
-        getchar();
-        // check next char to find corresponding bracket
-        while ((c = peekchar()) != EOF) {
-          if (c == '}') {
-            getchar();
-            break;
-          }
+{   int c;
+  int c2; 
+  while ((c = peekchar()) != EOF) {
+    // for whitespace
+    if (c == ' ' || c == '\n' || c == '\t') {
+      getchar(); 
+    }
+    // for comments
+    else if (c == '{') {
+      getchar();
+      // check next char to find corresponding bracket
+      while ((c = peekchar()) != EOF) {
+        if (c == '}') {
           getchar();
+          break;
         }
-      } else if (c == '(' && (c2 = peek2char()) != EOF && c2 == '*') {
         getchar();
-        getchar();
-        // check next char to find corresponding bracket
-        while ((c = peekchar()) !=  EOF && (c2 = peek2char()) != EOF){
-          if (c == '*' && c2 == ')') {
-            getchar();
-            getchar();
-            break;
-          }
+      }
+    } else if (c == '(' && (c2 = peek2char()) != EOF && c2 == '*') {
+      getchar();
+      getchar();
+      // check next char to find corresponding bracket
+      while ((c = peekchar()) !=  EOF && (c2 = peek2char()) != EOF){
+        if (c == '*' && c2 == ')') {
           getchar();
+          getchar();
+          break;
         }
+        getchar();
       }
-      else {
-        break;
-      }
-    } 
+    }
+    else {
+      break;
+    }
   } 
+} 
 
 /* Helper method to search for value of operator from given token
    Returns 0 if not found */
-int op_search (char * token) {
-    // printf("entering op %s\n", token);
+int op_search (char * token) 
+{
   for (int i = 1; i <= 19 ; i++) {
     if (strcmp(token, op[i - 1]) == 0) {
       return i;
@@ -104,7 +104,8 @@ int op_search (char * token) {
 
 /* Helper method to search for value of reserve word from given token
    Returns 0 if not found */
-int res_search (char * token) {
+int res_search (char * token) 
+{
   for (int i = 1; i <= 29 ; i++) {
     if (strcmp(token, reserved[i - 1]) == 0) {
       return i;
@@ -115,8 +116,8 @@ int res_search (char * token) {
 
 /* Helper method to search for value of delimiter from given token
    Returns 0 if not found */
-int delim_search (char * token) {
-  // printf("entering delim %s\n", token);
+int delim_search (char * token) 
+{
   for (int i = 1; i <= 8 ; i++) {
     if (strcmp(token, delim[i - 1]) == 0) {
       return i;
@@ -128,75 +129,76 @@ int delim_search (char * token) {
 
 /* Get identifiers and reserved words */
 TOKEN identifier (TOKEN tok)
-  { int c;
-    int numc = 0;
-    char string[16];
-    int value = 0;
-    // checks if first char is a letter
-    if ((c = peekchar()) != EOF && CHARCLASS[c] == ALPHA) {
-      while ((c = peekchar()) != EOF && (CHARCLASS[c] == ALPHA || CHARCLASS[c] == NUMERIC)) {
-			  c = getchar();
+{   int c;
+  int numc = 0;
+  char string[16];
+  int value = 0;
+  // checks if first char is a letter
+  if ((c = peekchar()) != EOF && CHARCLASS[c] == ALPHA) {
+    while ((c = peekchar()) != EOF && (CHARCLASS[c] == ALPHA || CHARCLASS[c] == NUMERIC)) {
+      c = getchar();
+      if (numc < 15) {
+        string[numc] = c;
+        numc++;
+      }
+    }
+  }
+  string[numc] = 0;
+  // search for corresponding token type 
+  if ((value = res_search(string)) != 0) {
+    tok->tokentype = RESERVED;
+    tok->whichval = value;
+  } else if ((value = op_search(string)) != 0) {
+    // word operators
+    tok->tokentype = OPERATOR;
+    tok->whichval = value;
+  } else {
+    tok->tokentype = IDENTIFIERTOK;
+    strcpy(tok->stringval, string);
+  }
+  return tok;
+}
+
+/* Gets string from within quotes*/
+TOKEN getstring (TOKEN tok)
+{
+  int c;
+  int c2;
+  char string[16];
+  int numc = 0; 
+  if ((c = peekchar()) != EOF && c == '\'') {
+    getchar();
+    while ((c = peekchar()) != EOF && (c2 = peek2char()) != EOF) {
+      // if two quotes, keeps one
+      if (c == '\'' && c2 == '\'') {
+        c = getchar();
+        if (numc < 15){
+          string[numc] = c;
+          numc++;
+        }
+        getchar();
+      // checks for end of string
+      } else if (c == '\'' && c2 != '\'') {
+        getchar();
+        break;
+      } else {
+        c = getchar();
         if (numc < 15) {
           string[numc] = c;
           numc++;
         }
-		  }
+      }
     }
     string[numc] = 0;
-    // search for corresponding token type 
-    if ((value = res_search(string)) != 0) {
-			tok->tokentype = RESERVED;
-			tok->whichval = value;
-		} else if ((value = op_search(string)) != 0) {
-      // word operators
-			tok->tokentype = OPERATOR;
-			tok->whichval = value;
-		} else {
-			tok->tokentype = IDENTIFIERTOK;
-			strcpy(tok->stringval, string);
-    }
-    return tok;
+    tok->tokentype = STRINGTOK;
+    strcpy(tok->stringval, string);
   }
-
-/* Gets string from within quotes*/
-TOKEN getstring (TOKEN tok)
-  {
-    int c;
-    int c2;
-    char string[16];
-    int numc = 0; 
-    if ((c = peekchar()) != EOF && c == '\'') {
-      getchar();
-      while ((c = peekchar()) != EOF && (c2 = peek2char()) != EOF) {
-        // if two quotes, keeps one
-        if (c == '\'' && c2 == '\'') {
-          c = getchar();
-          if (numc < 15){
-            string[numc] = c;
-            numc++;
-          }
-          getchar();
-        // checks for end of string
-        } else if (c == '\'' && c2 != '\'') {
-          getchar();
-          break;
-        } else {
-          c = getchar();
-          if (numc < 15) {
-            string[numc] = c;
-            numc++;
-          }
-        }
-      }
-      string[numc] = 0;
-      tok->tokentype = STRINGTOK;
-      strcpy(tok->stringval, string);
-    }
-    return tok;
-  }
+  return tok;
+}
 
 /* Gets special tokens, including operators and delimiters*/
-TOKEN special (TOKEN tok) {
+TOKEN special (TOKEN tok) 
+{
   int c;
   int c2; 
   char special[3];
@@ -317,7 +319,7 @@ TOKEN number (TOKEN tok)
     tok->intval = num;
     return (tok);
   } else {
-    // calculates power needed to multiply accumulated value by
+    // calculates power needed to multiply accumulated value
     powerindex = exponent + numaftere;
     if (powerindex == -60) {
       printf("Floating number out of range\n");
