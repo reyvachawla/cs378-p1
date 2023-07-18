@@ -141,10 +141,10 @@ var          {return(maketoken(RESERVED, VAR));}
 while        {return(maketoken(RESERVED, WHILE));}
 with         {return(maketoken(RESERVED, WITH));}
 
-{id}      {return(install_id());}
-{integer}   {return(install_integer());}
-{fnumber} {return(install_fnum());}
-{string}    {return(install_string());}
+{id}         {return(install_id());}
+{integer}    {return(install_integer());}
+{fnumber}    {return(install_fnum());}
+{string}     {return(install_string());}
 
 %%
 
@@ -168,6 +168,7 @@ int maketoken(int type, int which)
   return(which);
   }
 
+/* Makes identifier token */
 int install_id()
  { int i, c, n;
   yylval = talloc();  /* Make new token, set yylval to point to it */
@@ -184,6 +185,7 @@ int install_id()
   return(IDENTIFIER);
  }
 
+/* Makes real num token */
 int install_fnum() {  /* Note -- you may use sscanf for this assignment. */
   float fnum;
   yylval = talloc();   /* Make new token, set yylval to point to it */
@@ -195,7 +197,7 @@ int install_fnum() {  /* Note -- you may use sscanf for this assignment. */
   return(NUMBER);
  }
 
-// why string 
+/* Makes string token */
  int install_string()
  {
    int i, c, n, len;
@@ -218,7 +220,7 @@ int install_fnum() {  /* Note -- you may use sscanf for this assignment. */
    yylval->stringval[len] = 0;
    return (STRING);
 }
-
+/* Makes integer num token */
 int install_integer()
 {
    int integer;
