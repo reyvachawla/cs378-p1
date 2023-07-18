@@ -220,6 +220,7 @@ int install_fnum() {  /* Note -- you may use sscanf for this assignment. */
    yylval->stringval[len] = 0;
    return (STRING);
 }
+
 /* Makes integer num token */
 int install_integer()
 {
