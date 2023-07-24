@@ -82,30 +82,30 @@ TOKEN parseresult;
 
 %%
 
-program    :  PROGRAM IDENTIFIER LPAREN idlist RPAREN SEMICOLON vblock DOT  /* change this! */       { parseresult = makeprogram($2, $4, $7); }
+program    :  PROGRAM IDENTIFIER LPAREN idlist RPAREN SEMICOLON vblock DOT  /* change this! */  { parseresult = makeprogram($2, $4, $7); }
              ;
   idlist     :  IDENTIFIER COMMA idlist { $$ = cons($1, $3); }
-             |  IDENTIFIER    { $$ = cons($1, NULL); }
+             |  IDENTIFIER              { $$ = cons($1, NULL); }
              ;
-  vblock     :  VAR varspecs block       { $$ = $3; }
+  vblock     :  VAR varspecs block      { $$ = $3; }
              |  block
              ;
   varspecs   :  vargroup SEMICOLON varspecs
              |  vargroup SEMICOLON
              ;
-  vargroup   :  idlist COLON type { instvars($1, $3); }
+  vargroup   :  idlist COLON type       { instvars($1, $3); }
              ;
   type       :  simpletype
              ;
-  simpletype :  IDENTIFIER   { $$ = findtype($1); }
+  simpletype :  IDENTIFIER              { $$ = findtype($1); }
              ;
   block      :  BEGINBEGIN statement endpart   { $$ = makeprogn($1,cons($2, $3)); }
              ;
   statement  :  BEGINBEGIN statement endpart   { $$ = makeprogn($1,cons($2, $3)); }
              |  IF expr THEN statement endif   { $$ = makeif($1, $2, $4, $5); }
-             |  assignment
              |  funcall
-             |  FOR assignment TO expr DO statement	{ $$ = makefor(1, $1, $2, $3, $4, $5, $6); }
+             |  assignment
+             |  FOR assignment TO expr DO statement	    { $$ = makefor(1, $1, $2, $3, $4, $5, $6); }
              |  FOR assignment DOWNTO expr DO statement	{ $$ = makefor(-1, $1, $2, $3, $4, $5, $6); } // need this?
              ;
   endpart    :  SEMICOLON statement endpart    { $$ = cons($2, $3); }
@@ -127,16 +127,14 @@ program    :  PROGRAM IDENTIFIER LPAREN idlist RPAREN SEMICOLON vblock DOT  /* c
   term       :  term TIMES factor              { $$ = binop($2, $1, $3); }
              |  factor
              ;
-  variable   : IDENTIFIER
+  variable   :  IDENTIFIER
              ;
   factor     :  LPAREN expr RPAREN             { $$ = $2; }
              |  variable
-             |  NUMBER
              |  STRING
+             |  NUMBER
              ;
 %%
-
-// try to change talloc for core dump!!
 
 /* You should add your own debugging flags below, and add debugging
    printouts to your programs.
@@ -157,26 +155,29 @@ program    :  PROGRAM IDENTIFIER LPAREN idlist RPAREN SEMICOLON vblock DOT  /* c
    /*  Note: you should add to the above values and insert debugging
        printouts in your routines similar to those that are shown here.     */
 
+/* cons links a new item onto the front of a list.  Equivalent to a push.
+   (cons 'a '(b c))  =  (a b c)    */
 TOKEN cons(TOKEN item, TOKEN list)           /* add item to front of list */
   { item->link = list;
-    if (DEBUG & DB_CONS)
+    /* if (DEBUG & DB_CONS)
        { printf("cons\n");
          dbugprinttok(item);
          dbugprinttok(list);
-       };
+       }; */
     return item;
   }
 
+/* binop links a binary operator op to two operands, lhs and rhs. */
 TOKEN binop(TOKEN op, TOKEN lhs, TOKEN rhs)        /* reduce binary operator */
   { op->operands = lhs;          /* link operands to operator       */
     lhs->link = rhs;             /* link second operand to first    */
     rhs->link = NULL;            /* terminate operand list          */
-    if (DEBUG & DB_BINOP)
+    /* if (DEBUG & DB_BINOP)
        { printf("binop\n");
          dbugprinttok(op);
          dbugprinttok(lhs);
          dbugprinttok(rhs);
-       };
+       }; */
     return op;
   }
 
@@ -212,9 +213,8 @@ TOKEN makeprogram(TOKEN name, TOKEN args, TOKEN statements) {
     return tok;
   }
 
-
-  // unary?, makeop, makefuncall
-
+/* makeif makes an IF operator and links it to its arguments.
+   tok is a (now) unused token that is recycled to become an IFOP operator */
 TOKEN makeif(TOKEN tok, TOKEN exp, TOKEN thenpart, TOKEN elsepart)
   {  tok->tokentype = OPERATOR;  /* Make it look like an operator   */
      tok->whichval = IFOP;
@@ -222,29 +222,31 @@ TOKEN makeif(TOKEN tok, TOKEN exp, TOKEN thenpart, TOKEN elsepart)
      thenpart->link = elsepart;
      exp->link = thenpart;
      tok->operands = exp;
-     if (DEBUG & DB_MAKEIF)
+     /* if (DEBUG & DB_MAKEIF)
         { printf("makeif\n");
           dbugprinttok(tok);
           dbugprinttok(exp);
           dbugprinttok(thenpart);
           dbugprinttok(elsepart);
-        };
+        }; */
      return tok;
    }
 
+/* makeprogn makes a PROGN operator and links it to the list of statements.
+   tok is a (now) unused token that is recycled. */
 TOKEN makeprogn(TOKEN tok, TOKEN statements)
   {  tok->tokentype = OPERATOR;
      tok->whichval = PROGNOP;
      tok->operands = statements;
-     if (DEBUG & DB_MAKEPROGN)
+     /* if (DEBUG & DB_MAKEPROGN)
        { printf("makeprogn\n");
          dbugprinttok(tok);
          dbugprinttok(statements);
-       };
+       }; */
      return tok;
    }
 
-   /* install variables in symbol table */
+/* install variables in symbol table */
 void instvars(TOKEN idlist, TOKEN typetok)
   {  SYMBOL sym, typesym; int align;
      typesym = typetok->symtype;
@@ -264,7 +266,8 @@ void instvars(TOKEN idlist, TOKEN typetok)
         };
   }
 
-// can we copy?, needs erfror if not found?
+/* findid finds an identifier in the symbol table, sets up symbol table
+   pointers, changes a constant to its number equivalent */
 TOKEN findid(TOKEN tok) 
 { /* the ID token */
 SYMBOL sym = searchst(tok->stringval);
@@ -286,24 +289,11 @@ TOKEN findtype(TOKEN tok)
   return tok;
 }
 
-//???
 /* copytok makes a new token that is a copy of origtok */
-TOKEN copytok(TOKEN origtok)
-{
-   TOKEN copy = talloc();
-  copy->tokentype = origtok->tokentype;
-  copy->basicdt = origtok->basicdt;
-  copy->symtype = origtok->symtype;
-  copy->symentry = origtok->symentry;
-  copy->link = origtok->link;
-  copy->whichval = origtok->whichval;
-  copy->intval = origtok->intval;
-  copy->realval = origtok->realval;
-  /* if (DEBUG & DB_MAKECOPY) {
-    printf("copytok\n");
-    dbugprinttok(copy);
-  } */
-  return copy;
+TOKEN copytok(TOKEN origtok) {
+	TOKEN tok = talloc();
+	memcpy(tok, origtok, sizeof(struct tokn));
+	return tok;
 }
 
 
@@ -328,6 +318,8 @@ TOKEN makelabel()
   return tok;
 }
 
+/* makegoto makes a GOTO operator to go to the specified label.
+   The label number is put into a number token. */
 TOKEN makegoto(int num){
   TOKEN tok = talloc();
   tok->tokentype = OPERATOR;
@@ -344,11 +336,10 @@ TOKEN makegoto(int num){
 TOKEN makefor(int sign, TOKEN tok, TOKEN asg, TOKEN tokb, TOKEN endexpr,
               TOKEN tokc, TOKEN statement)
 {
-  int curr_labelnum = labelnumber;
+  int labelnum = labelnumber;
   tok = makeprogn (tok, asg);
   TOKEN label = makelabel();
-  TOKEN goto_ = makegoto(curr_labelnum);
-  // curr?
+  TOKEN goto_ = makegoto(labelnum);
   asg->link = label;
 
   TOKEN check = talloc();
@@ -359,37 +350,39 @@ TOKEN makefor(int sign, TOKEN tok, TOKEN asg, TOKEN tokb, TOKEN endexpr,
 	TOKEN ident2 = copytok(asg->operands);
 	TOKEN ident3 = copytok(asg->operands);
 
-  TOKEN equal_to = 0;
-  TOKEN increment = 0;
+  TOKEN comparison = 0;
+  TOKEN step = 0;
 
   TOKEN assign = makeop(ASSIGNOP);
   if (sign == 1) {
-    equal_to = makeop(LEOP);
-    increment = makeop(PLUSOP);
+    comparison = makeop(LEOP);
+    step = makeop(PLUSOP);
   } else {
-    equal_to = makeop(GEOP);
-    increment = makeop(MINUSOP);
+    comparison = makeop(GEOP);
+    step = makeop(MINUSOP);
   }
-  check = makeif(check, equal_to, s, NULL);
-  ident->link = endexpr;
-  equal_to->operands = ident;
 
+  check = makeif(check, comparison, s, NULL);
+
+  ident->link = endexpr;
+  comparison->operands = ident;
   ident3->link = makeintc(1);
-  increment->operands = ident3;
-  ident2->link = increment;
-  assign->operands = ident2;
+  step->operands = ident3;
+  ident2->link = step;
 
   assign->link = goto_;
+  assign->operands = ident2;
   statement->link = assign;
 
-  equal_to->link = s;
-  check->operands = equal_to;
   label->link = check;
-  
+  check->operands = comparison;
+  comparison->link = s;  
   return tok;
 }
 
-      
+/* wordaddress pads the offset n to be a multiple of wordsize.
+   wordsize should be 4 for integer, 8 for real and pointers,
+   16 for records and arrays */   
 int wordaddress(int n, int wordsize)
   { return ((n + wordsize - 1) / wordsize) * wordsize; }
  
@@ -403,7 +396,7 @@ int main(void)          /*  */
     initsyms();
     res = yyparse();
     printst();       /* to shorten, change to:  printstlevel(1);  */
-    printf("yyparse result = %8d\n", res);
+    // printf("yyparse result = %8d\n", res);
     if (DEBUG & DB_PARSERES) dbugprinttok(parseresult);
     ppexpr(parseresult);           /* Pretty-print the result tree */
     /* uncomment following to call code generator. */
