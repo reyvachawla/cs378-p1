@@ -130,7 +130,7 @@
 TOKEN parseresult;
 
 
-#line 134 "y.tab.c"
+#line 134 "pars1.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -1500,71 +1500,71 @@ yyreduce:
   case 2:
 #line 84 "pars1.y"
                                                       { parseresult = yyvsp[-1]; }
-#line 1504 "y.tab.c"
+#line 1504 "pars1.tab.c"
     break;
 
   case 3:
 #line 87 "pars1.y"
                                        { yyval = makeprogn(yyvsp[-2],cons(yyvsp[-1], yyvsp[0])); }
-#line 1510 "y.tab.c"
+#line 1510 "pars1.tab.c"
     break;
 
   case 4:
 #line 88 "pars1.y"
                                                { yyval = makeif(yyvsp[-4], yyvsp[-3], yyvsp[-1], yyvsp[0]); }
-#line 1516 "y.tab.c"
+#line 1516 "pars1.tab.c"
     break;
 
   case 6:
 #line 91 "pars1.y"
                                                { yyval = cons(yyvsp[-1], yyvsp[0]); }
-#line 1522 "y.tab.c"
+#line 1522 "pars1.tab.c"
     break;
 
   case 7:
 #line 92 "pars1.y"
                                                { yyval = NULL; }
-#line 1528 "y.tab.c"
+#line 1528 "pars1.tab.c"
     break;
 
   case 8:
 #line 94 "pars1.y"
                                                { yyval = yyvsp[0]; }
-#line 1534 "y.tab.c"
+#line 1534 "pars1.tab.c"
     break;
 
   case 9:
 #line 95 "pars1.y"
                                                { yyval = NULL; }
-#line 1540 "y.tab.c"
+#line 1540 "pars1.tab.c"
     break;
 
   case 10:
 #line 97 "pars1.y"
                                                { yyval = binop(yyvsp[-1], yyvsp[-2], yyvsp[0]); }
-#line 1546 "y.tab.c"
+#line 1546 "pars1.tab.c"
     break;
 
   case 11:
 #line 99 "pars1.y"
                                                { yyval = binop(yyvsp[-1], yyvsp[-2], yyvsp[0]); }
-#line 1552 "y.tab.c"
+#line 1552 "pars1.tab.c"
     break;
 
   case 13:
 #line 102 "pars1.y"
                                                { yyval = binop(yyvsp[-1], yyvsp[-2], yyvsp[0]); }
-#line 1558 "y.tab.c"
+#line 1558 "pars1.tab.c"
     break;
 
   case 15:
 #line 105 "pars1.y"
                                                { yyval = yyvsp[-1]; }
-#line 1564 "y.tab.c"
+#line 1564 "pars1.tab.c"
     break;
 
 
-#line 1568 "y.tab.c"
+#line 1568 "pars1.tab.c"
 
       default: break;
     }
