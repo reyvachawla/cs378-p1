@@ -112,7 +112,7 @@ program    :  PROGRAM IDENTIFIER LPAREN idlist RPAREN SEMICOLON cblock DOT   { p
              |  MOD
              |  AND
              ;
-  /* numlist    :  NUMBER COMMA numlist    { $$ = cons($1, $3); }   
+  /* numlist :  NUMBER COMMA numlist    { $$ = cons($1, $3); }   
              |  NUMBER                  { $$ = cons($1, NULL); }
              ;
   lblock     :  LABEL numlist SEMICOLON cblock   { $$ = $4; }
@@ -314,7 +314,6 @@ TOKEN makefuncall(TOKEN tok, TOKEN fn, TOKEN args) {
   t1->basicdt = find->datatype->basicdt;
   t1->operands = fn;          
   fn->link = args;             
-  // args->link = NULL; 
 	return t1;
 }
 
@@ -372,7 +371,7 @@ void  instconst(TOKEN idtok, TOKEN consttok) {
   sym->kind = CONSTSYM;
   if (sym->basicdt == INTEGER) {
       sym->constval.intnum = consttok->intval;
-  } else if (sym->basicdt == REAL) { // ??
+  } else if (sym->basicdt == REAL) { 
       sym->constval.realnum = consttok->realval;
   }
   
@@ -415,12 +414,12 @@ tok->symtype = typ;
 
 if (sym->kind == CONSTSYM) {
   if (sym->basicdt == INTEGER) {
-        tok->tokentype = NUMBERTOK;
         tok->basicdt = INTEGER;
+        tok->tokentype = NUMBERTOK;
         tok->intval = sym->constval.intnum;
   } else if (sym->basicdt == REAL) {
-        tok->tokentype = NUMBERTOK;
         tok->basicdt = REAL;
+          tok->tokentype = NUMBERTOK;
         tok->realval = sym->constval.realnum;
   }
   return tok;
@@ -447,7 +446,6 @@ TOKEN copytok(TOKEN origtok) {
         memcpy(tok, origtok, sizeof(struct tokn));
         return tok;
 }
-
 
 /* makeintc makes a new integer number token with num as its value */
 TOKEN makeintc(int num)
@@ -490,12 +488,12 @@ TOKEN makerepeat(TOKEN tok, TOKEN statements, TOKEN tokb, TOKEN expr) {
   TOKEN s = tokb;
   s = makeprogn (s, statements);
   TOKEN gototok = makegoto (labelnum);
-  TOKEN nulltok = makeprogn ((TOKEN) talloc(), NULL); // ??
+  TOKEN nulltok = makeprogn ((TOKEN) talloc(), NULL); 
   TOKEN check = talloc();
   check = makeif(check, expr, nulltok, gototok);
 
   label->link = s;
-  nulltok->link = gototok;   // ??
+  nulltok->link = gototok;   
   s->link = check;
   if (DEBUG && DB_MAKEREPEAT) {
          printf("make repeat\n");
