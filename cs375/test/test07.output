@@ -1,0 +1,233 @@
+cons
+ token 94060678110192  ID        output  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94060678118976  ID            im  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94060678118848  ID            re  dtype  0  link 94060678118976
+ token 94060678118976  ID            im  dtype  0  link 0
+instfields
+instrec
+insttype
+cons
+ token 94060678120128  ID          blue  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94060678120000  ID         white  dtype  0  link 94060678120128
+ token 94060678120128  ID          blue  dtype  0  link 0
+cons
+ token 94060678119872  ID           red  dtype  0  link 94060678120000
+ token 94060678120000  ID         white  dtype  0  link 94060678120128
+makeintc
+makeintc
+makeintc
+subrange
+install enum
+ token 94060678119872  ID           red  dtype  0  link 94060678120000
+install enum
+insttype
+instpoint
+instpoint = 1
+insttype
+instpoint
+instpoint = 1
+insttype
+cons
+ token 94060678122464  ID           age  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678122720  ID        friend  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678122976  ID      location  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678123232  ID      favorite  dtype  0  link 0
+ token 0  NULL
+instfields
+instrec
+insttype
+cons
+ token 94060678124224  ID           age  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678124480  ID        friend  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678124736  ID      location  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678124992  ID      favorite  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678125248  ID        height  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94060678125504  ID        weight  dtype  0  link 0
+ token 0  NULL
+instfields
+instrec
+insttype
+cons
+ token 94060678126688  ID           mry  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94060678126560  ID           joh  dtype  0  link 94060678126688
+ token 94060678126688  ID           mry  dtype  0  link 0
+0
+instvars
+cons
+ token 94060678127264  ID           trx  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94060678127136  ID           frd  dtype  0  link 94060678127264
+ token 94060678127264  ID           trx  dtype  0  link 0
+0
+instvars
+findid
+makeop
+makeintc
+findid
+makeop
+makeintc
+findid
+makeop
+makeintc
+findid
+makeop
+makeintc
+cons
+ token 94060678129568  OP            :=  dtype  0  link 0  operands 94060678129440
+ token 0  NULL
+cons
+ token 94060678129056  OP            :=  dtype  0  link 94060678129568  operands 94060678128928
+ token 94060678129568  OP            :=  dtype  0  link 0  operands 94060678129440
+cons
+ token 94060678128544  OP            :=  dtype  0  link 94060678129056  operands 94060678128416
+ token 94060678129056  OP            :=  dtype  0  link 94060678129568  operands 94060678128928
+cons
+ token 94060678128032  OP            :=  dtype  0  link 94060678128544  operands 94060678127904
+ token 94060678128544  OP            :=  dtype  0  link 94060678129056  operands 94060678128416
+makeprogn
+ token 94060678127712  OP         progn  dtype  0  link 0  operands 94060678128032
+ token 94060678128032  OP            :=  dtype  0  link 94060678128544  operands 94060678127904
+makeprogn
+ token 94060678129952  OP         progn  dtype  0  link 0  operands 94060678110192
+ token 94060678110192  ID        output  dtype  0  link 0
+makeprogram
+Symbol table level 0
+ 94060678079136        real  BASIC  basicdt   1          siz     8
+ 94060678079232     integer  BASIC  basicdt   0          siz     4
+ 94060678079328        char  BASIC  basicdt   2          siz     1
+ 94060678079424     boolean  BASIC  basicdt   3          siz     4
+ 94060678079520         exp  knd 5 0  typ 94060678079616  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94060678079808       trexp  knd 5 0  typ 94060678079904  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94060678080096         sin  knd 5 0  typ 94060678080192  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94060678080384         cos  knd 5 0  typ 94060678080480  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94060678080672       trsin  knd 5 0  typ 94060678080768  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94060678080960        sqrt  knd 5 0  typ 94060678081056  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94060678081248       round  knd 5 0  typ 94060678081344  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94060678081536      iround  knd 5 0  typ 94060678081632  lvl  0  siz     0  off     0
+(FUNCTION integer
+          real)
+ 94060678081824         ord  knd 5 0  typ 94060678081920  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94060678082112         new  knd 5 0  typ 94060678082208  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94060678082400       trnew  knd 5 0  typ 94060678082496  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94060678082688       write  knd 5 0  typ 94060678082784  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94060678082976     writeln  knd 5 0  typ 94060678083072  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94060678083264      writef  knd 5 0  typ 94060678083360  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94060678083552    writelnf  knd 5 0  typ 94060678083648  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94060678083840      writei  knd 5 0  typ 94060678083936  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94060678084128    writelni  knd 5 0  typ 94060678084224  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94060678084416        read  knd 5 0  typ 94060678084512  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94060678084704      readln  knd 5 0  typ 94060678084800  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94060678084992         eof  knd 5 0  typ 94060678085088  lvl  0  siz     0  off     0
+(FUNCTION boolean
+          NULL)
+Symbol table level 1
+ 94060678119520     complex  TYPE   typ 94060678119232  lvl  1  siz    16  off     0
+(RECORD (re real)
+        (im real))
+ 94060678120384         red  CONST  typ INTEGER  val  0
+ 94060678120544       white  CONST  typ INTEGER  val  1
+ 94060678120704        blue  CONST  typ INTEGER  val  2
+ 94060678120896       color  TYPE   typ 94060678120800  lvl  1  siz     4  off     0
+  0 ..   2
+ 94060678121312      person  TYPE   typ 94060678123488  lvl  1  siz    48  off     0
+(RECORD (age integer)
+        (friend (^ person))
+        (location (RECORD (re real)
+                          (im real)))
+        (favorite   0 ..   2))
+ 94060678121504          pp  TYPE   typ 94060678121408  lvl  1  siz     8  off     0
+(^ person)
+ 94060678121920     personX  TYPE   typ 94060678125760  lvl  1  siz    64  off     0
+(RECORD (age integer)
+        (friend (^ person))
+        (location (RECORD (re real)
+                          (im real)))
+        (favorite   0 ..   2)
+        (height real)
+        (weight real))
+ 94060678122112         ppX  TYPE   typ 94060678122016  lvl  1  siz     8  off     0
+(^ personX)
+ 94060678126944         joh  VAR    4 typ 94060678121408  lvl  1  siz     8  off     0
+(^ person)
+ 94060678127040         mry  VAR    4 typ 94060678121408  lvl  1  siz     8  off     8
+(^ person)
+ 94060678127520         frd  VAR    4 typ 94060678122016  lvl  1  siz     8  off    16
+(^ personX)
+ 94060678127616         trx  VAR    4 typ 94060678122016  lvl  1  siz     8  off    24
+(^ personX)
+yyparse result =        0
+ token 94060678129888  OP       program  dtype  0  link 0  operands 94060678110064
+(program graph1 (progn output)
+                (progn (:= joh (funcall new 48))
+                       (:= mry (funcall new 48))
+                       (:= frd (funcall new 64))
+                       (:= trx (funcall new 64))))

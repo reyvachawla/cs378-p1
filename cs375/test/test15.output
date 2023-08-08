@@ -1,0 +1,291 @@
+cons
+ token 94802894494704  ID        output  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94802894503616  ID          blue  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94802894503488  ID         white  dtype  0  link 94802894503616
+ token 94802894503616  ID          blue  dtype  0  link 0
+cons
+ token 94802894503360  ID           red  dtype  0  link 94802894503488
+ token 94802894503488  ID         white  dtype  0  link 94802894503616
+makeintc
+makeintc
+makeintc
+subrange
+install enum
+ token 94802894503360  ID           red  dtype  0  link 94802894503488
+install enum
+insttype
+cons
+ token 94802894504736  ID             j  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94802894504608  ID             i  dtype  0  link 94802894504736
+ token 94802894504736  ID             j  dtype  0  link 0
+0
+instvars
+cons
+ token 94802894505184  ID           aco  dtype  0  link 0
+ token 0  NULL
+subrange
+instdotdot
+cons
+ token 94802894505792  ID         color  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94802894505504  typ  1  whic   8  dty   0  sty 94802894505632 lnk 94802894505792  opnds 0
+ token 94802894505792  ID         color  dtype  0  link 0
+subrange
+instarray
+instarray
+0
+instvars
+cons
+ token 94802894506560  ID          acoX  dtype  0  link 0
+ token 0  NULL
+subrange
+instdotdot
+cons
+ token 94802894507168  ID         color  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94802894506880  typ  1  whic   8  dty   0  sty 94802894507008 lnk 94802894507168  opnds 0
+ token 94802894507168  ID         color  dtype  0  link 0
+subrange
+instarray
+instarray
+0
+instvars
+findid
+findid
+cons
+ token 94802894508128  ID             i  dtype  0  link 94802894508256
+ token 94802894508256  NUM            1  dtype  0  link 0
+makeop
+makeintc
+makeintc
+makeop
+makeop
+makearef
+ token 94802894508704  OP          aref  dtype  0  link 0  operands 94802894508000
+ token 94802894508000  ID           aco  dtype  0  link 94802894508640
+makeop
+makeintc
+makeintc
+makeop
+makeintc
+makeop
+makearef
+ token 94802894509088  OP          aref  dtype  0  link 0  operands 94802894508704
+ token 94802894508704  OP          aref  dtype  0  link 94802894508960  operands 94802894508000
+binop
+ token 94802894509152  OP            :=  dtype  0  link 0  operands 94802894509088
+ token 94802894509088  OP          aref  dtype  0  link 94802894509216  operands 94802894508704
+ token 94802894509216  NUM            2  dtype  0  link 0
+findid
+findid
+cons
+ token 94802894509472  ID             j  dtype  0  link 94802894509600
+ token 94802894509600  NUM            2  dtype  0  link 0
+makeop
+makeintc
+makeintc
+makeop
+makeop
+makearef
+ token 94802894510048  OP          aref  dtype  0  link 0  operands 94802894509344
+ token 94802894509344  ID           aco  dtype  0  link 94802894509984
+makeop
+makeintc
+makeintc
+makeop
+makeintc
+makeop
+makearef
+ token 94802894510432  OP          aref  dtype  0  link 0  operands 94802894510048
+ token 94802894510048  OP          aref  dtype  0  link 94802894510304  operands 94802894509344
+binop
+ token 94802894510496  OP            :=  dtype  0  link 0  operands 94802894510432
+ token 94802894510432  OP          aref  dtype  0  link 94802894510560  operands 94802894510048
+ token 94802894510560  NUM            0  dtype  0  link 0
+findid
+findid
+cons
+ token 94802894510816  ID             j  dtype  0  link 94802894510944
+ token 94802894510944  NUM            1  dtype  0  link 0
+makeop
+makeintc
+makeintc
+makeop
+makeop
+makearef
+ token 94802894511392  OP          aref  dtype  0  link 0  operands 94802894510688
+ token 94802894510688  ID          acoX  dtype  0  link 94802894511328
+makeop
+makeintc
+makeintc
+makeop
+makeintc
+makeop
+makearef
+ token 94802894511776  OP          aref  dtype  0  link 0  operands 94802894511392
+ token 94802894511392  OP          aref  dtype  0  link 94802894511648  operands 94802894510688
+binop
+ token 94802894511840  OP            :=  dtype  0  link 0  operands 94802894511776
+ token 94802894511776  OP          aref  dtype  0  link 94802894511904  operands 94802894511392
+ token 94802894511904  NUM            2  dtype  0  link 0
+findid
+findid
+cons
+ token 94802894512160  ID             i  dtype  0  link 94802894512288
+ token 94802894512288  NUM            2  dtype  0  link 0
+makeop
+makeintc
+makeintc
+makeop
+makeop
+makearef
+ token 94802894512736  OP          aref  dtype  0  link 0  operands 94802894512032
+ token 94802894512032  ID          acoX  dtype  0  link 94802894512672
+makeop
+makeintc
+makeintc
+makeop
+makeintc
+makeop
+makearef
+ token 94802894513120  OP          aref  dtype  0  link 0  operands 94802894512736
+ token 94802894512736  OP          aref  dtype  0  link 94802894512992  operands 94802894512032
+binop
+ token 94802894513184  OP            :=  dtype  0  link 0  operands 94802894513120
+ token 94802894513120  OP          aref  dtype  0  link 94802894513248  operands 94802894512736
+ token 94802894513248  NUM            0  dtype  0  link 0
+cons
+ token 94802894513184  OP            :=  dtype  0  link 0  operands 94802894513120
+ token 0  NULL
+cons
+ token 94802894511840  OP            :=  dtype  0  link 94802894513184  operands 94802894511776
+ token 94802894513184  OP            :=  dtype  0  link 0  operands 94802894513120
+cons
+ token 94802894510496  OP            :=  dtype  0  link 94802894511840  operands 94802894510432
+ token 94802894511840  OP            :=  dtype  0  link 94802894513184  operands 94802894511776
+cons
+ token 94802894509152  OP            :=  dtype  0  link 94802894510496  operands 94802894509088
+ token 94802894510496  OP            :=  dtype  0  link 94802894511840  operands 94802894510432
+makeprogn
+ token 94802894507936  OP         progn  dtype  0  link 0  operands 94802894509152
+ token 94802894509152  OP            :=  dtype  0  link 94802894510496  operands 94802894509088
+makeprogn
+ token 94802894513504  OP         progn  dtype  0  link 0  operands 94802894494704
+ token 94802894494704  ID        output  dtype  0  link 0
+makeprogram
+Symbol table level 0
+ 94802894463648        real  BASIC  basicdt   1          siz     8
+ 94802894463744     integer  BASIC  basicdt   0          siz     4
+ 94802894463840        char  BASIC  basicdt   2          siz     1
+ 94802894463936     boolean  BASIC  basicdt   3          siz     4
+ 94802894464032         exp  knd 5 0  typ 94802894464128  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94802894464320       trexp  knd 5 0  typ 94802894464416  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94802894464608         sin  knd 5 0  typ 94802894464704  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94802894464896         cos  knd 5 0  typ 94802894464992  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94802894465184       trsin  knd 5 0  typ 94802894465280  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94802894465472        sqrt  knd 5 0  typ 94802894465568  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94802894465760       round  knd 5 0  typ 94802894465856  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94802894466048      iround  knd 5 0  typ 94802894466144  lvl  0  siz     0  off     0
+(FUNCTION integer
+          real)
+ 94802894466336         ord  knd 5 0  typ 94802894466432  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94802894466624         new  knd 5 0  typ 94802894466720  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94802894466912       trnew  knd 5 0  typ 94802894467008  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94802894467200       write  knd 5 0  typ 94802894467296  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94802894467488     writeln  knd 5 0  typ 94802894467584  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94802894467776      writef  knd 5 0  typ 94802894467872  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94802894468064    writelnf  knd 5 0  typ 94802894468160  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94802894468352      writei  knd 5 0  typ 94802894468448  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94802894468640    writelni  knd 5 0  typ 94802894468736  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94802894468928        read  knd 5 0  typ 94802894469024  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94802894469216      readln  knd 5 0  typ 94802894469312  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94802894469504         eof  knd 5 0  typ 94802894469600  lvl  0  siz     0  off     0
+(FUNCTION boolean
+          NULL)
+Symbol table level 1
+ 94802894503872         red  CONST  typ INTEGER  val  0
+ 94802894504032       white  CONST  typ INTEGER  val  1
+ 94802894504192        blue  CONST  typ INTEGER  val  2
+ 94802894504384       color  TYPE   typ 94802894504288  lvl  1  siz     4  off     0
+  0 ..   2
+ 94802894504992           i  VAR    0 typ integer  lvl  1  siz     4  off     0
+ 94802894505088           j  VAR    0 typ integer  lvl  1  siz     4  off     4
+ 94802894506464         aco  VAR    0 typ 94802894506112  lvl  1  siz   120  off    16
+(ARRAY   1 ..  10 (ARRAY   0 ..   2   0 ..   2))
+ 94802894507840        acoX  VAR    0 typ 94802894507488  lvl  1  siz    60  off   144
+(ARRAY   2 ..   6 (ARRAY   0 ..   2   0 ..   2))
+yyparse result =        0
+ token 94802894513440  OP       program  dtype  0  link 0  operands 94802894494576
+(program graph1 (progn output)
+                (progn (:= (aref (aref aco (+ -11
+                                              (* 12
+                                                 i)))
+                                 (+ -12
+                                    (* 12
+                                       1)))
+                           2)
+                       (:= (aref (aref aco (+ -11
+                                              (* 12
+                                                 j)))
+                                 (+ -12
+                                    (* 12
+                                       2)))
+                           0)
+                       (:= (aref (aref acoX (+ -7
+                                               (* 8
+                                                  j)))
+                                 (+ -12
+                                    (* 12
+                                       1)))
+                           2)
+                       (:= (aref (aref acoX (+ -7
+                                               (* 8
+                                                  i)))
+                                 (+ -12
+                                    (* 12
+                                       2)))
+                           0)))

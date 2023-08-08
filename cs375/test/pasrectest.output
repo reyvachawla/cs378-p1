@@ -1,0 +1,35 @@
+cons
+ token 93843660946416  ID        output  dtype  0  link 0
+ token 0  NULL
+cons
+ token 93843660955520  ID            im  dtype  0  link 0
+ token 0  NULL
+cons
+ token 93843660955392  ID            re  dtype  0  link 93843660955520
+ token 93843660955520  ID            im  dtype  0  link 0
+cons
+ token 93843660956576  ID          blue  dtype  0  link 0
+ token 0  NULL
+cons
+ token 93843660956448  ID         white  dtype  0  link 93843660956576
+ token 93843660956576  ID          blue  dtype  0  link 0
+cons
+ token 93843660956320  ID           red  dtype  0  link 93843660956448
+ token 93843660956448  ID         white  dtype  0  link 93843660956576
+install enum
+ token 93843660956320  ID           red  dtype  0  link 93843660956448
+cons
+ token 93843660958112  ID           age  dtype  0  link 0
+ token 0  NULL
+cons
+ token 93843660958368  ID        friend  dtype  0  link 0
+ token 0  NULL
+cons
+ token 93843660958624  ID      location  dtype  0  link 0
+ token 0  NULL
+cons
+ token 93843660958880  ID      favorite  dtype  0  link 0
+ token 0  NULL
+cons
+ token 93843660959136  ID        salary  dtype  0  link 0
+ token 0  NULL

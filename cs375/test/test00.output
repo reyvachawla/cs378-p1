@@ -1,0 +1,197 @@
+cons
+ token 94145742633968  ID        output  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94145742644800  ID         black  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94145742644672  ID          gray  dtype  0  link 94145742644800
+ token 94145742644800  ID         black  dtype  0  link 0
+cons
+ token 94145742644544  ID         white  dtype  0  link 94145742644672
+ token 94145742644672  ID          gray  dtype  0  link 94145742644800
+cons
+ token 94145742644416  ID         brown  dtype  0  link 94145742644544
+ token 94145742644544  ID         white  dtype  0  link 94145742644672
+cons
+ token 94145742644288  ID          pink  dtype  0  link 94145742644416
+ token 94145742644416  ID         brown  dtype  0  link 94145742644544
+cons
+ token 94145742644160  ID       magenta  dtype  0  link 94145742644288
+ token 94145742644288  ID          pink  dtype  0  link 94145742644416
+cons
+ token 94145742644032  ID        purple  dtype  0  link 94145742644160
+ token 94145742644160  ID       magenta  dtype  0  link 94145742644288
+cons
+ token 94145742643904  ID        violet  dtype  0  link 94145742644032
+ token 94145742644032  ID        purple  dtype  0  link 94145742644160
+cons
+ token 94145742643776  ID        indigo  dtype  0  link 94145742643904
+ token 94145742643904  ID        violet  dtype  0  link 94145742644032
+cons
+ token 94145742643648  ID          blue  dtype  0  link 94145742643776
+ token 94145742643776  ID        indigo  dtype  0  link 94145742643904
+cons
+ token 94145742643520  ID          cyan  dtype  0  link 94145742643648
+ token 94145742643648  ID          blue  dtype  0  link 94145742643776
+cons
+ token 94145742643392  ID         green  dtype  0  link 94145742643520
+ token 94145742643520  ID          cyan  dtype  0  link 94145742643648
+cons
+ token 94145742643264  ID        yellow  dtype  0  link 94145742643392
+ token 94145742643392  ID         green  dtype  0  link 94145742643520
+cons
+ token 94145742643136  ID        orange  dtype  0  link 94145742643264
+ token 94145742643264  ID        yellow  dtype  0  link 94145742643392
+cons
+ token 94145742643008  ID           red  dtype  0  link 94145742643136
+ token 94145742643136  ID        orange  dtype  0  link 94145742643264
+cons
+ token 94145742642880  ID     newcolor2  dtype  0  link 94145742643008
+ token 94145742643008  ID           red  dtype  0  link 94145742643136
+cons
+ token 94145742642752  ID     newcolor1  dtype  0  link 94145742642880
+ token 94145742642880  ID     newcolor2  dtype  0  link 94145742643008
+cons
+ token 94145742642624  ID     newcolor0  dtype  0  link 94145742642752
+ token 94145742642752  ID     newcolor1  dtype  0  link 94145742642880
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+makeintc
+subrange
+install enum
+ token 94145742642624  ID     newcolor0  dtype  0  link 94145742642752
+install enum
+insttype
+cons
+ token 94145742648320  ID             d  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94145742648192  ID             c  dtype  0  link 94145742648320
+ token 94145742648320  ID             d  dtype  0  link 0
+0
+instvars
+findid
+binop
+ token 94145742648896  OP            :=  dtype  0  link 0  operands 94145742648832
+ token 94145742648832  ID             c  dtype  0  link 94145742648960
+ token 94145742648960  NUM            0  dtype  0  link 0
+cons
+ token 94145742648896  OP            :=  dtype  0  link 0  operands 94145742648832
+ token 0  NULL
+makeprogn
+ token 94145742648768  OP         progn  dtype  0  link 0  operands 94145742648896
+ token 94145742648896  OP            :=  dtype  0  link 0  operands 94145742648832
+makeprogn
+ token 94145742649216  OP         progn  dtype  0  link 0  operands 94145742633968
+ token 94145742633968  ID        output  dtype  0  link 0
+makeprogram
+Symbol table level 0
+ 94145742602912        real  BASIC  basicdt   1          siz     8
+ 94145742603008     integer  BASIC  basicdt   0          siz     4
+ 94145742603104        char  BASIC  basicdt   2          siz     1
+ 94145742603200     boolean  BASIC  basicdt   3          siz     4
+ 94145742603296         exp  knd 5 0  typ 94145742603392  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94145742603584       trexp  knd 5 0  typ 94145742603680  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94145742603872         sin  knd 5 0  typ 94145742603968  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94145742604160         cos  knd 5 0  typ 94145742604256  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94145742604448       trsin  knd 5 0  typ 94145742604544  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94145742604736        sqrt  knd 5 0  typ 94145742604832  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94145742605024       round  knd 5 0  typ 94145742605120  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94145742605312      iround  knd 5 0  typ 94145742605408  lvl  0  siz     0  off     0
+(FUNCTION integer
+          real)
+ 94145742605600         ord  knd 5 0  typ 94145742605696  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94145742605888         new  knd 5 0  typ 94145742605984  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94145742606176       trnew  knd 5 0  typ 94145742606272  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94145742606464       write  knd 5 0  typ 94145742606560  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94145742606752     writeln  knd 5 0  typ 94145742606848  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94145742607040      writef  knd 5 0  typ 94145742607136  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94145742607328    writelnf  knd 5 0  typ 94145742607424  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94145742607616      writei  knd 5 0  typ 94145742607712  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94145742607904    writelni  knd 5 0  typ 94145742608000  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94145742608192        read  knd 5 0  typ 94145742608288  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94145742608480      readln  knd 5 0  typ 94145742608576  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94145742608768         eof  knd 5 0  typ 94145742608864  lvl  0  siz     0  off     0
+(FUNCTION boolean
+          NULL)
+Symbol table level 1
+ 94145742645056   newcolor0  CONST  typ INTEGER  val  0
+ 94145742645216   newcolor1  CONST  typ INTEGER  val  1
+ 94145742645376   newcolor2  CONST  typ INTEGER  val  2
+ 94145742645536         red  CONST  typ INTEGER  val  3
+ 94145742645696      orange  CONST  typ INTEGER  val  4
+ 94145742645856      yellow  CONST  typ INTEGER  val  5
+ 94145742646016       green  CONST  typ INTEGER  val  6
+ 94145742646176        cyan  CONST  typ INTEGER  val  7
+ 94145742646336        blue  CONST  typ INTEGER  val  8
+ 94145742646496      indigo  CONST  typ INTEGER  val  9
+ 94145742646656      violet  CONST  typ INTEGER  val  10
+ 94145742646816      purple  CONST  typ INTEGER  val  11
+ 94145742646976     magenta  CONST  typ INTEGER  val  12
+ 94145742647136        pink  CONST  typ INTEGER  val  13
+ 94145742647296       brown  CONST  typ INTEGER  val  14
+ 94145742647456       white  CONST  typ INTEGER  val  15
+ 94145742647616        gray  CONST  typ INTEGER  val  16
+ 94145742647776       black  CONST  typ INTEGER  val  17
+ 94145742647968       color  TYPE   typ 94145742647872  lvl  1  siz     4  off     0
+  0 ..  17
+ 94145742648576           c  VAR    0 typ 94145742647872  lvl  1  siz     4  off     0
+  0 ..  17
+ 94145742648672           d  VAR    0 typ 94145742647872  lvl  1  siz     4  off     4
+  0 ..  17
+yyparse result =        0
+ token 94145742649152  OP       program  dtype  0  link 0  operands 94145742633840
+(program graph1 (progn output)
+                (progn (:= c 0)))

@@ -1,0 +1,144 @@
+cons
+ token 94853503450096  ID        output  dtype  0  link 0
+ token 0  NULL
+instlabel
+instlabel
+cons
+ token 94853503459008  ID           sum  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94853503458880  ID             i  dtype  0  link 94853503459008
+ token 94853503459008  ID           sum  dtype  0  link 0
+0
+instvars
+findid
+binop
+ token 94853503459712  OP            :=  dtype  0  link 0  operands 94853503459648
+ token 94853503459648  ID             i  dtype  0  link 94853503459776
+ token 94853503459776  NUM            0  dtype  0  link 0
+makeintc
+makeop
+makeprogn
+ token 94853503459584  OP         progn  dtype  0  link 0  operands 94853503459968
+ token 94853503459968  OP         label  dtype  0  link 94853503459712  operands 94853503459904
+findid
+findid
+binop
+ token 94853503460352  OP             +  dtype  0  link 0  operands 94853503460288
+ token 94853503460288  ID             i  dtype  0  link 94853503460416
+ token 94853503460416  NUM            1  dtype  0  link 0
+binop
+ token 94853503460224  OP            :=  dtype  0  link 0  operands 94853503460160
+ token 94853503460160  ID           sum  dtype  0  link 94853503460352
+ token 94853503460352  OP             +  dtype  0  link 0  operands 94853503460288
+makeintc
+makeop
+makeprogn
+ token 94853503460096  OP         progn  dtype  0  link 0  operands 94853503460608
+ token 94853503460608  OP         label  dtype  0  link 94853503460224  operands 94853503460544
+findid
+binop
+ token 94853503460800  OP             <  dtype  0  link 0  operands 94853503460736
+ token 94853503460736  ID           sum  dtype  0  link 94853503460864
+ token 94853503460864  NUM            3  dtype  0  link 0
+makeintc
+makegoto
+dogoto
+makeif
+ token 94853503460672  OP            if  dtype  0  link 0  operands 94853503460800
+ token 94853503460800  OP             <  dtype  0  link 94853503461120  operands 94853503460736
+ token 94853503461120  OP          goto  dtype  0  link 0  operands 94853503461184
+ token 0  NULL
+cons
+ token 94853503460672  OP            if  dtype  0  link 0  operands 94853503460800
+ token 0  NULL
+cons
+ token 94853503460096  OP         progn  dtype  0  link 94853503460672  operands 94853503460608
+ token 94853503460672  OP            if  dtype  0  link 0  operands 94853503460800
+cons
+ token 94853503459584  OP         progn  dtype  0  link 94853503460096  operands 94853503459968
+ token 94853503460096  OP         progn  dtype  0  link 94853503460672  operands 94853503460608
+makeprogn
+ token 94853503459456  OP         progn  dtype  0  link 0  operands 94853503459584
+ token 94853503459584  OP         progn  dtype  0  link 94853503460096  operands 94853503459968
+makeprogn
+ token 94853503461440  OP         progn  dtype  0  link 0  operands 94853503450096
+ token 94853503450096  ID        output  dtype  0  link 0
+makeprogram
+Symbol table level 0
+ 94853503419040        real  BASIC  basicdt   1          siz     8
+ 94853503419136     integer  BASIC  basicdt   0          siz     4
+ 94853503419232        char  BASIC  basicdt   2          siz     1
+ 94853503419328     boolean  BASIC  basicdt   3          siz     4
+ 94853503419424         exp  knd 5 0  typ 94853503419520  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94853503419712       trexp  knd 5 0  typ 94853503419808  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94853503420000         sin  knd 5 0  typ 94853503420096  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94853503420288         cos  knd 5 0  typ 94853503420384  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94853503420576       trsin  knd 5 0  typ 94853503420672  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94853503420864        sqrt  knd 5 0  typ 94853503420960  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94853503421152       round  knd 5 0  typ 94853503421248  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94853503421440      iround  knd 5 0  typ 94853503421536  lvl  0  siz     0  off     0
+(FUNCTION integer
+          real)
+ 94853503421728         ord  knd 5 0  typ 94853503421824  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94853503422016         new  knd 5 0  typ 94853503422112  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94853503422304       trnew  knd 5 0  typ 94853503422400  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94853503422592       write  knd 5 0  typ 94853503422688  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94853503422880     writeln  knd 5 0  typ 94853503422976  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94853503423168      writef  knd 5 0  typ 94853503423264  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94853503423456    writelnf  knd 5 0  typ 94853503423552  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94853503423744      writei  knd 5 0  typ 94853503423840  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94853503424032    writelni  knd 5 0  typ 94853503424128  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94853503424320        read  knd 5 0  typ 94853503424416  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94853503424608      readln  knd 5 0  typ 94853503424704  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94853503424896         eof  knd 5 0  typ 94853503424992  lvl  0  siz     0  off     0
+(FUNCTION boolean
+          NULL)
+Symbol table level 1
+ 94853503459264           i  VAR    0 typ integer  lvl  1  siz     4  off     0
+ 94853503459360         sum  VAR    0 typ integer  lvl  1  siz     4  off     4
+yyparse result =        0
+ token 94853503461376  OP       program  dtype  0  link 0  operands 94853503449968
+(program graph1 (progn output)
+                (progn (progn (label 1)
+                              (:= i 0))
+                       (progn (label 0)
+                              (:= sum (+ i 1)))
+                       (if (< sum 3)
+                           (goto 0))))

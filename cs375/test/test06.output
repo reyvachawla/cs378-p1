@@ -1,0 +1,102 @@
+cons
+ token 94434016996336  ID        output  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94434017004800  ID             i  dtype  0  link 0
+ token 0  NULL
+0
+instvars
+findid
+cons
+ token 94434017006240  OP       funcall  dtype  0  link 0  operands 94434017006176
+ token 0  NULL
+cons
+ token 94434017005920  OP       funcall  dtype  0  link 94434017006240  operands 94434017005856
+ token 94434017006240  OP       funcall  dtype  0  link 0  operands 94434017006176
+cons
+ token 94434017005600  OP       funcall  dtype  0  link 94434017005920  operands 94434017005536
+ token 94434017005920  OP       funcall  dtype  0  link 94434017006240  operands 94434017005856
+cons
+ token 94434017005280  OP       funcall  dtype  0  link 94434017005600  operands 94434017005216
+ token 94434017005600  OP       funcall  dtype  0  link 94434017005920  operands 94434017005536
+makeprogn
+ token 94434017005152  OP         progn  dtype  0  link 0  operands 94434017005280
+ token 94434017005280  OP       funcall  dtype  0  link 94434017005600  operands 94434017005216
+makeprogn
+ token 94434017006624  OP         progn  dtype  0  link 0  operands 94434016996336
+ token 94434016996336  ID        output  dtype  0  link 0
+makeprogram
+Symbol table level 0
+ 94434016965280        real  BASIC  basicdt   1          siz     8
+ 94434016965376     integer  BASIC  basicdt   0          siz     4
+ 94434016965472        char  BASIC  basicdt   2          siz     1
+ 94434016965568     boolean  BASIC  basicdt   3          siz     4
+ 94434016965664         exp  knd 5 0  typ 94434016965760  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94434016965952       trexp  knd 5 0  typ 94434016966048  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94434016966240         sin  knd 5 0  typ 94434016966336  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94434016966528         cos  knd 5 0  typ 94434016966624  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94434016966816       trsin  knd 5 0  typ 94434016966912  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94434016967104        sqrt  knd 5 0  typ 94434016967200  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94434016967392       round  knd 5 0  typ 94434016967488  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94434016967680      iround  knd 5 0  typ 94434016967776  lvl  0  siz     0  off     0
+(FUNCTION integer
+          real)
+ 94434016967968         ord  knd 5 0  typ 94434016968064  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94434016968256         new  knd 5 0  typ 94434016968352  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94434016968544       trnew  knd 5 0  typ 94434016968640  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94434016968832       write  knd 5 0  typ 94434016968928  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94434016969120     writeln  knd 5 0  typ 94434016969216  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94434016969408      writef  knd 5 0  typ 94434016969504  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94434016969696    writelnf  knd 5 0  typ 94434016969792  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94434016969984      writei  knd 5 0  typ 94434016970080  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94434016970272    writelni  knd 5 0  typ 94434016970368  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94434016970560        read  knd 5 0  typ 94434016970656  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94434016970848      readln  knd 5 0  typ 94434016970944  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94434016971136         eof  knd 5 0  typ 94434016971232  lvl  0  siz     0  off     0
+(FUNCTION boolean
+          NULL)
+Symbol table level 1
+ 94434017005056           i  VAR    0 typ integer  lvl  1  siz     4  off     0
+yyparse result =        0
+ token 94434017006560  OP       program  dtype  0  link 0  operands 94434016996208
+(program graph1 (progn output)
+                (progn (funcall write 'i = ')
+                       (funcall writeln i)
+                       (funcall write 'Fred loc im = ')
+                       (funcall writeln 3.140000e+00)))

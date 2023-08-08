@@ -1,0 +1,98 @@
+cons
+ token 94770879392752  ID        output  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879401856  ID            im  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879401728  ID            re  dtype  0  link 94770879401856
+ token 94770879401856  ID            im  dtype  0  link 0
+instfields
+insttype
+cons
+ token 94770879403008  ID          blue  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879402880  ID         white  dtype  0  link 94770879403008
+ token 94770879403008  ID          blue  dtype  0  link 0
+cons
+ token 94770879402752  ID           red  dtype  0  link 94770879402880
+ token 94770879402880  ID         white  dtype  0  link 94770879403008
+install enum
+ token 94770879402752  ID           red  dtype  0  link 94770879402880
+install enum
+insttype
+instpoint
+insttype
+cons
+ token 94770879404736  ID           age  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94770879404992  ID        friend  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94770879405248  ID      location  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94770879405504  ID      favorite  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94770879405760  ID        salary  dtype  0  link 0
+ token 0  NULL
+instfields
+insttype
+cons
+ token 94770879406848  ID             d  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879406720  ID             c  dtype  0  link 94770879406848
+ token 94770879406848  ID             d  dtype  0  link 0
+instvars
+cons
+ token 94770879407424  ID           sum  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879407296  ID             i  dtype  0  link 94770879407424
+ token 94770879407424  ID           sum  dtype  0  link 0
+instvars
+cons
+ token 94770879407872  ID            ac  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879408192  typ  1  whic   8  dty   0  sty 94770879408320 lnk 0  opnds 0
+ token 0  NULL
+instvars
+cons
+ token 94770879408864  ID           aco  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879409472  ID         color  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879409184  typ  1  whic   8  dty   0  sty 94770879409312 lnk 94770879409472  opnds 0
+ token 94770879409472  ID         color  dtype  0  link 0
+instvars
+cons
+ token 94770879410624  ID           ptr  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879410496  ID          fred  dtype  0  link 94770879410624
+ token 94770879410624  ID           ptr  dtype  0  link 0
+cons
+ token 94770879410368  ID          mary  dtype  0  link 94770879410496
+ token 94770879410496  ID          fred  dtype  0  link 94770879410624
+cons
+ token 94770879410240  ID          john  dtype  0  link 94770879410368
+ token 94770879410368  ID          mary  dtype  0  link 94770879410496
+instvars
+cons
+ token 94770879411264  ID        people  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94770879411584  typ  1  whic   8  dty   0  sty 94770879411712 lnk 0  opnds 0
+ token 0  NULL
+instvars

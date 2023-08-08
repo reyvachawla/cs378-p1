@@ -1,0 +1,66 @@
+cons
+ token 94136404315120  ID        output  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94136404323904  ID            im  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94136404323776  ID            re  dtype  0  link 94136404323904
+ token 94136404323904  ID            im  dtype  0  link 0
+instfields
+instrec
+insttype
+cons
+ token 94136404325056  ID          blue  dtype  0  link 0
+ token 0  NULL
+cons
+ token 94136404324928  ID         white  dtype  0  link 94136404325056
+ token 94136404325056  ID          blue  dtype  0  link 0
+cons
+ token 94136404324800  ID           red  dtype  0  link 94136404324928
+ token 94136404324928  ID         white  dtype  0  link 94136404325056
+makeintc
+makeintc
+makeintc
+subrange
+install enum
+ token 94136404324800  ID           red  dtype  0  link 94136404324928
+install enum
+insttype
+instpoint
+instpoint = 1
+insttype
+cons
+ token 94136404326784  ID           age  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94136404327040  ID        friend  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94136404327296  ID      location  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94136404327552  ID      favorite  dtype  0  link 0
+ token 0  NULL
+instfields
+cons
+ token 94136404327808  ID        salary  dtype  0  link 0
+ token 0  NULL
+instfields
+instrec
+insttype
+cons
+ token 94136404328768  ID          john  dtype  0  link 0
+ token 0  NULL
+0
+instvars
+findid
+dopoint
+makeintc
+makeop
+makearef
+ token 94136404329504  OP          aref  dtype  0  link 0  operands 94136404329248
+ token 94136404329248  OP             ^  dtype  0  link 94136404329440  operands 94136404329184
