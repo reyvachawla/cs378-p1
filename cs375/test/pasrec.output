@@ -1,98 +1,193 @@
-cons
- token 94770879392752  ID        output  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879401856  ID            im  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879401728  ID            re  dtype  0  link 94770879401856
- token 94770879401856  ID            im  dtype  0  link 0
-instfields
-insttype
-cons
- token 94770879403008  ID          blue  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879402880  ID         white  dtype  0  link 94770879403008
- token 94770879403008  ID          blue  dtype  0  link 0
-cons
- token 94770879402752  ID           red  dtype  0  link 94770879402880
- token 94770879402880  ID         white  dtype  0  link 94770879403008
-install enum
- token 94770879402752  ID           red  dtype  0  link 94770879402880
-install enum
-insttype
-instpoint
-insttype
-cons
- token 94770879404736  ID           age  dtype  0  link 0
- token 0  NULL
-instfields
-cons
- token 94770879404992  ID        friend  dtype  0  link 0
- token 0  NULL
-instfields
-cons
- token 94770879405248  ID      location  dtype  0  link 0
- token 0  NULL
-instfields
-cons
- token 94770879405504  ID      favorite  dtype  0  link 0
- token 0  NULL
-instfields
-cons
- token 94770879405760  ID        salary  dtype  0  link 0
- token 0  NULL
-instfields
-insttype
-cons
- token 94770879406848  ID             d  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879406720  ID             c  dtype  0  link 94770879406848
- token 94770879406848  ID             d  dtype  0  link 0
-instvars
-cons
- token 94770879407424  ID           sum  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879407296  ID             i  dtype  0  link 94770879407424
- token 94770879407424  ID           sum  dtype  0  link 0
-instvars
-cons
- token 94770879407872  ID            ac  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879408192  typ  1  whic   8  dty   0  sty 94770879408320 lnk 0  opnds 0
- token 0  NULL
-instvars
-cons
- token 94770879408864  ID           aco  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879409472  ID         color  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879409184  typ  1  whic   8  dty   0  sty 94770879409312 lnk 94770879409472  opnds 0
- token 94770879409472  ID         color  dtype  0  link 0
-instvars
-cons
- token 94770879410624  ID           ptr  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879410496  ID          fred  dtype  0  link 94770879410624
- token 94770879410624  ID           ptr  dtype  0  link 0
-cons
- token 94770879410368  ID          mary  dtype  0  link 94770879410496
- token 94770879410496  ID          fred  dtype  0  link 94770879410624
-cons
- token 94770879410240  ID          john  dtype  0  link 94770879410368
- token 94770879410368  ID          mary  dtype  0  link 94770879410496
-instvars
-cons
- token 94770879411264  ID        people  dtype  0  link 0
- token 0  NULL
-cons
- token 94770879411584  typ  1  whic   8  dty   0  sty 94770879411712 lnk 0  opnds 0
- token 0  NULL
-instvars
+Symbol table level 0
+ 94046669210272        real  BASIC  basicdt   1          siz     8
+ 94046669210368     integer  BASIC  basicdt   0          siz     4
+ 94046669210464        char  BASIC  basicdt   2          siz     1
+ 94046669210560     boolean  BASIC  basicdt   3          siz     4
+ 94046669210656         exp  knd 5 0  typ 94046669210752  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94046669210944       trexp  knd 5 0  typ 94046669211040  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94046669211232         sin  knd 5 0  typ 94046669211328  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94046669211520         cos  knd 5 0  typ 94046669211616  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94046669211808       trsin  knd 5 0  typ 94046669211904  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94046669212096        sqrt  knd 5 0  typ 94046669212192  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94046669212384       round  knd 5 0  typ 94046669212480  lvl  0  siz     0  off     0
+(FUNCTION real
+          real)
+ 94046669212672      iround  knd 5 0  typ 94046669212768  lvl  0  siz     0  off     0
+(FUNCTION integer
+          real)
+ 94046669212960         ord  knd 5 0  typ 94046669213056  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94046669213248         new  knd 5 0  typ 94046669213344  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94046669213536       trnew  knd 5 0  typ 94046669213632  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94046669213824       write  knd 5 0  typ 94046669213920  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94046669214112     writeln  knd 5 0  typ 94046669214208  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          char)
+ 94046669214400      writef  knd 5 0  typ 94046669214496  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94046669214688    writelnf  knd 5 0  typ 94046669214784  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          real)
+ 94046669214976      writei  knd 5 0  typ 94046669215072  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94046669215264    writelni  knd 5 0  typ 94046669215360  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          integer)
+ 94046669215552        read  knd 5 0  typ 94046669215648  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94046669215840      readln  knd 5 0  typ 94046669215936  lvl  0  siz     0  off     0
+(FUNCTION NULL
+          NULL)
+ 94046669216128         eof  knd 5 0  typ 94046669216224  lvl  0  siz     0  off     0
+(FUNCTION boolean
+          NULL)
+Symbol table level 1
+ 94046669242768     complex  TYPE   typ 94046669242480  lvl  1  siz    16  off     0
+(RECORD (re real)
+        (im real))
+ 94046669243632         red  CONST  typ INTEGER  val  0
+ 94046669243792       white  CONST  typ INTEGER  val  1
+ 94046669243952        blue  CONST  typ INTEGER  val  2
+ 94046669244144       color  TYPE   typ 94046669244048  lvl  1  siz     4  off     0
+  0 ..   2
+ 94046669244560      person  TYPE   typ 94046669246384  lvl  1  siz    48  off     0
+(RECORD (age integer)
+        (friend (^ person))
+        (location (RECORD (re real)
+                          (im real)))
+        (favorite   0 ..   2)
+        (salary real))
+ 94046669244752          pp  TYPE   typ 94046669244656  lvl  1  siz     8  off     0
+(^ person)
+ 94046669247472           c  VAR    0 typ 94046669242480  lvl  1  siz    16  off     0
+(RECORD (re real)
+        (im real))
+ 94046669247568           d  VAR    0 typ 94046669242480  lvl  1  siz    16  off    16
+(RECORD (re real)
+        (im real))
+ 94046669248048           i  VAR    0 typ integer  lvl  1  siz     4  off    32
+ 94046669248144         sum  VAR    0 typ integer  lvl  1  siz     4  off    36
+ 94046669249136          ac  VAR    0 typ 94046669249040  lvl  1  siz   160  off    48
+(ARRAY   1 ..  10 (RECORD (re real)
+                          (im real)))
+ 94046669250512         aco  VAR    0 typ 94046669250160  lvl  1  siz   120  off   208
+(ARRAY   1 ..  10 (ARRAY   0 ..   2   0 ..   2))
+ 94046669251248        john  VAR    4 typ 94046669244656  lvl  1  siz     8  off   328
+(^ person)
+ 94046669251344        mary  VAR    4 typ 94046669244656  lvl  1  siz     8  off   336
+(^ person)
+ 94046669251440        fred  VAR    4 typ 94046669244656  lvl  1  siz     8  off   344
+(^ person)
+ 94046669251536         ptr  VAR    4 typ 94046669244656  lvl  1  siz     8  off   352
+(^ person)
+ 94046669252528      people  VAR    0 typ 94046669252432  lvl  1  siz   960  off   368
+(ARRAY   1 ..  20 (RECORD (age integer)
+                          (friend (^ person))
+                          (location (RECORD (re real)
+                                            (im real)))
+                          (favorite   0 ..   2)
+                          (salary real)))
+yyparse result =        0
+(program graph1 (progn output)
+                (progn (:= john (funcall new 48))
+                       (:= mary (funcall new 48))
+                       (:= fred (funcall new 48))
+                       (:= (aref (^ john)
+                                 32)
+                           2)
+                       (:= (aref (^ john)
+                                 0)
+                           19)
+                       (progn (label 1)
+                              (:= (aref (^ john)
+                                        8)
+                                  mary))
+                       (:= (aref (^ john)
+                                 40)
+                           4.000000e+04)
+                       (:= (aref (aref (^ john)
+                                       16)
+                                 0)
+                           3.000000e+00)
+                       (:= (aref (^ mary)
+                                 0)
+                           21)
+                       (:= (aref (^ mary)
+                                 8)
+                           fred)
+                       (progn (label 0)
+                              (:= (aref (^ fred)
+                                        0)
+                                  20))
+                       (:= (aref (^ fred)
+                                 8)
+                           0)
+                       (:= (aref (aref (^ (aref (^ (aref (^ john)
+                                                         8))
+                                                8))
+                                       16)
+                                 8)
+                           4.500000e+00)
+                       (:= (aref (aref ac (+ -16
+                                             (* 16
+                                                7)))
+                                 0)
+                           (aref (^ john)
+                                 40))
+                       (:= ptr john)
+                       (:= sum 0)
+                       (:= i 1)
+                       (progn (label 2)
+                              (if (<> ptr 0)
+                                  (progn (progn (:= sum (+ sum (aref (^ ptr)
+                                                                     0)))
+                                                (:= (aref (aref people (+ -48
+                                                                          (* 48
+                                                                             i)))
+                                                          0)
+                                                    (aref (^ ptr)
+                                                          0))
+                                                (:= (aref (aref aco (+ -11
+                                                                       (* 12
+                                                                          i)))
+                                                          (+ -12
+                                                             (* 12
+                                                                1)))
+                                                    (aref (^ john)
+                                                          32))
+                                                (:= ptr (aref (^ ptr)
+                                                              8))
+                                                (:= i (+ i 1)))
+                                         (goto 2))))
+                       (funcall write 'i = ')
+                       (funcall writelni i)
+                       (funcall write 'Sum of ages = ')
+                       (funcall writelni sum)
+                       (funcall write 'Fred loc im = ')
+                       (funcall writelnf (aref (aref (^ fred)
+                                                     16)
+                                               8))
+                       (if (< sum 3)
+                           (goto 0))))

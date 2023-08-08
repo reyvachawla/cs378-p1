@@ -254,7 +254,7 @@ are working.
 */
 
 
-#define DEBUG   31 /* set bits here for debugging, 0 = off */
+#define DEBUG   0 /* set bits here for debugging, 0 = off */
 #define DB_CONS 1 /* bit to trace cons */
 #define DB_BINOP 2 /* bit to trace binop */
 #define DB_MAKEIF 4 /* bit to trace makeif */
@@ -272,6 +272,7 @@ are working.
 #define DB_INSTENUM 1 < 14
 #define DB_INSTREC 1 << 15
 #define DB_INSTPOINT 1 << 16
+#define DB_MAKEFUNCALL 1 << 17
 
 
 int labelnumber = 0; /* sequential counter for internal label numbers */
@@ -328,15 +329,14 @@ TOKEN makearef(TOKEN var, TOKEN off, TOKEN tok){
   if (var->whichval == AREFOP && off->basicdt == INTEGER) {
     TOKEN offset = var->operands->link;
     if (offset->whichval == PLUSOP) {
-    // needs sum
-    int off1 = offset->operands->intval;
-    int off2 = off->intval;
-    TOKEN sum = makeintc(off1 + off2);
-    sum->link = offset->operands->link;
-    offset->operands = sum;
+      // needs sum
+      int off1 = offset->operands->intval;
+      int off2 = off->intval;
+      TOKEN sum = makeintc(off1 + off2);
+      sum->link = offset->operands->link;
+      offset->operands = sum;
     }
   }
-
   TOKEN array_tok = makeop(AREFOP);
   array_tok->operands = var;
   var->link = off;
@@ -349,7 +349,6 @@ TOKEN makearef(TOKEN var, TOKEN off, TOKEN tok){
     dbugprinttok(var);
     fflush(stdout);
   }
-
   return array_tok;
 }
 
@@ -370,10 +369,6 @@ TOKEN makewhile(TOKEN tok, TOKEN expr, TOKEN tokb, TOKEN statement) {
   statement->link = goto_;
   label->link = check;
 
-  /* if (DEBUG && DB_MAKEWHILE) {
-  printf("makewhile\n");
-  dbugprinttok(tok);
-  } */
   return tok;
 }
 
@@ -389,19 +384,19 @@ TOKEN makesubrange(TOKEN tok, int low, int high) {
   subrange->highbound = high;
   subrange->lowbound = low;
   tok->symtype = subrange;
-  printf("subrange\n");
-  fflush(stdout);
+  /* printf("subrange\n");
+  fflush(stdout); */
   return tok;
 }
 
 /* makeop makes a new operator token with operator number opnum.
 Example: makeop(FLOATOP) */
-TOKEN makeop(int opnum){
+TOKEN makeop(int opnum) {
   TOKEN tok = talloc();
   tok->tokentype = OPERATOR;
   tok->whichval = opnum;
-  printf("makeop\n");
-  fflush(stdout);
+  /* printf("makeop\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -418,8 +413,8 @@ TOKEN makefloat(TOKEN tok) {
     floattok->operands = tok;
     return floattok;
   }
-  printf("makefloat\n");
-  fflush(stdout);
+  /* printf("makefloat\n");
+  fflush(stdout); */
 }
 
 
@@ -435,8 +430,8 @@ TOKEN makefix(TOKEN tok) {
     fixtok->operands = tok;
     return fixtok;
   }
-  printf("makefix\n");
-  fflush(stdout);
+  /* printf("makefix\n");
+  fflush(stdout); */
 }
 
 
@@ -444,8 +439,8 @@ TOKEN makefix(TOKEN tok) {
 TOKEN unaryop(TOKEN op, TOKEN lhs) {
   op->operands = lhs;
   lhs->link = NULL;
-  printf("unaryop\n");
-  fflush(stdout);
+  /* printf("unaryop\n");
+  fflush(stdout); */
   return op;
 }
 
@@ -456,6 +451,12 @@ TOKEN binop(TOKEN op, TOKEN lhs, TOKEN rhs) /* reduce binary operator */
   op->operands = lhs; /* link operands to operator */
   lhs->link = rhs; /* link second operand to first */
   rhs->link = NULL; /* terminate operand list */
+  // NIL check
+  if (rhs->whichval == (NIL - RESERVED_BIAS)) {
+		rhs->tokentype = NUMBERTOK;
+		rhs->basicdt= INTEGER;
+		rhs->intval = 0;
+	}
   if (lhs->basicdt == REAL && rhs->basicdt == REAL) {
     op->basicdt = REAL;
   } else if (lhs->basicdt == REAL && rhs->basicdt == INTEGER) {
@@ -488,30 +489,14 @@ TOKEN binop(TOKEN op, TOKEN lhs, TOKEN rhs) /* reduce binary operator */
 /* reducedot handles a record reference.
 dot is a (now) unused token that is recycled. */
 TOKEN reducedot(TOKEN var, TOKEN dot, TOKEN field) {
-  // !!!!!
   assert( var->symtype->kind == RECORDSYM );
   SYMBOL current = var->symtype->datatype;
-  while (current != NULL) {
-    if (strcmp(current->namestring, field->stringval) == 0) {
-      TOKEN numtok = makeintc(current->offset);
-      TOKEN res = makearef (var, numtok, dot);
-      res->basicdt = current->datatype->basicdt;
-      return res;
-    } else {
-      current = current->link;
-    }
-  
+  while (current && strcmp(current->namestring, field->stringval) != 0) {
+    current = current->link;
   }
-
-//dot = makearef(var, makeintc(offset), dot);
-
-if (DEBUG & DB_REDUCEDOT) {
-  printf("reducedot\n");
-  dbugprinttok(var);
-  dbugprinttok(dot);
-  dbugprinttok(field);
-  fflush(stdout);
-}
+  dot = makearef(var, makeintc(current->offset), dot);
+  dot->symtype = current->datatype;
+  dot->basicdt = current->datatype->basicdt;
   return dot;
 }
 
@@ -544,7 +529,7 @@ TOKEN arrayref(TOKEN arr, TOKEN tok, TOKEN subs, TOKEN tokb) {
     sub_arrayref->symtype = arr->symtype->datatype;
 
     return arrayref(sub_arrayref, tok, subs->link, tokb);
-
+  // 1d
   } else {
     TOKEN multi = makeop(TIMESOP);
     int high = arr->symtype->highbound;
@@ -558,11 +543,10 @@ TOKEN arrayref(TOKEN arr, TOKEN tok, TOKEN subs, TOKEN tokb) {
     TOKEN neg_size = makeintc(-1 * size);
     neg_size->link = multi;
     TOKEN plus = makeop(PLUSOP);
-    plus->operands = neg_size;
+    plus->operands = neg_size; 
 
-  if (DEBUG & DB_ARRAYREF) {
+   if (DEBUG & DB_ARRAYREF) {
     printf("arrayref\n");
-    //printf("low : %d, high : %d, total size : %d, size of ele %d", low, high, arr->symtype->size, size);
     dbugprinttok(arr);
     dbugprinttok(subs);
     dbugprinttok(plus);
@@ -576,15 +560,12 @@ TOKEN arrayref(TOKEN arr, TOKEN tok, TOKEN subs, TOKEN tokb) {
 /* makefuncall makes a FUNCALL operator and links it to the fn and args.
 tok is a (now) unused token that is recycled. */
 TOKEN makefuncall(TOKEN tok, TOKEN fn, TOKEN args) {
-  // new writeln write
   if (strcmp(fn->stringval, "new") == 0) {
     tok = makeop(ASSIGNOP);
     tok->operands = args;
 
-
     SYMBOL typsym = args->symtype;
     typsym = typsym->datatype;
-
 
     TOKEN funcal = talloc();
     funcal->tokentype = OPERATOR;
@@ -594,24 +575,24 @@ TOKEN makefuncall(TOKEN tok, TOKEN fn, TOKEN args) {
     args->link = funcal;
 
   } else {
+    if (strcmp(fn->stringval, "writeln") == 0) {
+        if (args->basicdt == INTEGER) {
+          strcpy(fn->stringval, "writelni");
+        }
+        else if (args->basicdt == REAL) {
+          strcpy(fn->stringval, "writelnf");
+        }
+      }
     tok->tokentype = OPERATOR;
     tok->whichval = FUNCALLOP;
     tok->operands = fn;
     fn->link=args;
   }
-    /* if (DEBUG && DB_MAKEFUNCALL) {
+    if (DEBUG && DB_MAKEFUNCALL) {
     printf("makefuncall\n");
     dbugprinttok(tok);
-  } */
+  }
   return tok;
-
-
-  /* TOKEN t1 = makeop(FUNCALLOP);
-  SYMBOL find = searchst(fn->stringval);
-  t1->basicdt = find->datatype->basicdt;
-  t1->operands = fn;
-  fn->link = args;
-  return t1; */
 }
 
 
@@ -625,8 +606,8 @@ TOKEN makeprogram(TOKEN name, TOKEN args, TOKEN statements) {
   prog_tok = makeprogn(prog_tok, args);
   name->link = prog_tok;
   prog_tok->link = statements;
-  printf("makeprogram\n");
-  fflush(stdout);
+  /* printf("makeprogram\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -697,15 +678,14 @@ return tok;
 tok is a (now) unused token that is recycled. */
 TOKEN dogoto(TOKEN tok, TOKEN labeltok) {
   int user_label = 0;
-  // change to while?
   for (int i = 0; i < labelnumber; i++) {
     if (label_table[i] == labeltok->intval) {
       user_label = i;
     }
   }
   tok = makegoto(user_label);
-  printf("dogoto\n");
-  fflush(stdout);
+  /* printf("dogoto\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -721,19 +701,18 @@ TOKEN dopoint(TOKEN var, TOKEN tok) {
   tok->whichval = POINTEROP;
   var->link = NULL;
   tok->symtype = var->symtype->datatype->datatype;
-  printf("dopoint\n");
+  /* printf("dopoint\n");
   fflush(stdout);
-  return tok;
+  return tok; */
 }
 
 
 /* instlabel installs a user label into the label table */
 void instlabel (TOKEN num) {
-
   label_table[labelnumber] = num->intval;
   labelnumber++;
-  printf("instlabel\n");
-  fflush(stdout);
+  /* printf("instlabel\n");
+  fflush(stdout); */
 }
 
 
@@ -757,8 +736,8 @@ if (DEBUG & DB_INSTENUM) {
   printf("install enum\n");
   dbugprinttok(idlist);
 }
-printf("install enum\n");
-fflush(stdout);
+/* printf("install enum\n");
+fflush(stdout); */
 return tok;
 }
 
@@ -769,8 +748,8 @@ TOKEN instdotdot(TOKEN lowtok, TOKEN dottok, TOKEN hightok) {
   int high = hightok->intval;
   int low = lowtok->intval;
   TOKEN tok = makesubrange(dottok, low, high);
-  printf("instdotdot\n");
-  fflush(stdout);
+  /* printf("instdotdot\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -785,7 +764,6 @@ TOKEN instarray(TOKEN bounds, TOKEN typetok) {
   int size = array->datatype->size * (array->highbound - array->lowbound + 1);
   array->size = size;
 
-
   TOKEN second_array;
   if(bounds->link){
     int high = bounds->link->symtype->highbound;
@@ -796,8 +774,8 @@ TOKEN instarray(TOKEN bounds, TOKEN typetok) {
     array->size = array->datatype->size * (array->highbound - array->lowbound + 1);
   }
   typetok->symtype = array;
-  printf("instarray\n");
-  fflush(stdout);
+  /* printf("instarray\n");
+  fflush(stdout); */
   return typetok;
 }
 
@@ -807,9 +785,8 @@ re, im: real put the pointer to REAL in the RE, IM tokens.
 typetok is a token whose symtype is a symbol table pointer.
 Note that nconc() can be used to combine these lists after instrec() */
 TOKEN instfields(TOKEN idlist, TOKEN typetok) {
-  printf("instfields\n");
-  fflush(stdout);
-
+  /* printf("instfields\n");
+  fflush(stdout); */
   // !!!!!
   SYMBOL type_sym = typetok->symtype;
   TOKEN list = idlist;
@@ -817,27 +794,14 @@ TOKEN instfields(TOKEN idlist, TOKEN typetok) {
     list->symtype = type_sym;
     list = list->link;
   }
-
   return idlist;
 }
 
 
 /* instpoint will install a pointer type in symbol table */
 TOKEN instpoint(TOKEN tok, TOKEN typename) {
-  printf("instpoint\n");
-  fflush(stdout);
-  /* SYMBOL ptrsym, sym;
-
-  ptrsym = makesym("");
-  ptrsym->kind = POINTERSYM;
-  ptrsym->basicdt = POINTER;
-  ptrsym->size = basicsizes[POINTER];
-  tok->symtype = ptrsym; */
-  printf("instpoint = %d\n", tok->symtype == NULL);
-  /* sym = searchins(typename->stringval);
-  sym->kind = TYPESYM;
-
-*/
+  /* printf("instpoint\n");
+  fflush(stdout); */
 
   SYMBOL typesym = searchins(typename->stringval);
 
@@ -850,6 +814,7 @@ TOKEN instpoint(TOKEN tok, TOKEN typename) {
 
   tok->symtype = pointsym;
   tok->basicdt = POINTER;
+  /* printf("instpoint = %d\n", tok->symtype != NULL); */
 
   return tok;
 }
@@ -890,8 +855,8 @@ TOKEN instrec(TOKEN rectok, TOKEN argstok) {
   record_sym->size = wordaddress(next, 16);
   rectok->symtype = record_sym;
 
-  printf("instrec\n");
-  fflush(stdout);
+  /* printf("instrec\n");
+  fflush(stdout); */
   if (DEBUG & DB_INSTREC) {
     printf("install rec\n");
     printf("total size %d\n", record_sym->size);
@@ -910,8 +875,8 @@ void insttype(TOKEN typename, TOKEN typetok) {
   type_sym->size = typetok->symtype->size;
   type_sym->datatype = typetok->symtype;
   type_sym->basicdt = typetok->symtype->basicdt;
-  printf("insttype\n");
-  fflush(stdout);
+  /* printf("insttype\n");
+  fflush(stdout); */
 }
 
 
@@ -927,7 +892,6 @@ void instconst(TOKEN idtok, TOKEN consttok) {
   }
   if (DEBUG & DB_INSTCONST) {
     printf("install const\n");
-  //dbugprinttok(sym);
   }
 }
 
@@ -936,7 +900,7 @@ void instconst(TOKEN idtok, TOKEN consttok) {
 void instvars(TOKEN idlist, TOKEN typetok)
 { 
   SYMBOL sym, typesym; int align;
-  printf("%d\n", typetok->symtype == NULL);
+  /* printf("instvars = %d\n", typetok->symtype != NULL); */
   typesym = typetok->symtype;
   align = alignsize(typesym);
   while ( idlist != NULL ) /* for each id */
@@ -952,8 +916,8 @@ void instvars(TOKEN idlist, TOKEN typetok)
     sym->basicdt = typesym->basicdt;
     idlist = idlist->link;
   };
-  printf("instvars\n");
-  fflush(stdout);
+  /* printf("instvars\n");
+  fflush(stdout); */
 }
 
 
@@ -963,7 +927,6 @@ TOKEN findid(TOKEN tok)
 { /* the ID token */
   SYMBOL sym = searchst(tok->stringval);
   tok->symentry = sym;
-
 
   SYMBOL typ = sym->datatype;
   tok->symtype = typ;
@@ -979,13 +942,13 @@ TOKEN findid(TOKEN tok)
       tok->realval = sym->constval.realnum;
     }
   return tok;
-}
+  }
 
-if ( typ->kind == BASICTYPE || typ->kind == POINTERSYM) {
-    tok->basicdt = typ->basicdt;
-}
-  printf("findid\n");
-  fflush(stdout);
+  if ( typ->kind == BASICTYPE || typ->kind == POINTERSYM) {
+      tok->basicdt = typ->basicdt;
+  }
+  /* printf("findid\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -1024,8 +987,8 @@ TOKEN makeintc(int num)
   tok->tokentype = NUMBERTOK;
   tok->basicdt = INTEGER;
   tok->intval = num;
-  printf("makeintc\n");
-  fflush(stdout);
+  /* printf("makeintc\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -1038,8 +1001,8 @@ TOKEN makelabel()
   tok->whichval = LABELOP;
   tok->operands = makeintc(labelnumber);
   labelnumber++;
-  printf("makelabel\n");
-  fflush(stdout);
+  /* printf("makelabel\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -1051,8 +1014,8 @@ TOKEN makegoto(int num){
   tok->tokentype = OPERATOR;
   tok->whichval = GOTOOP;
   tok->operands = makeintc(num);
-  printf("makegoto\n");
-  fflush(stdout);
+  /* printf("makegoto\n");
+  fflush(stdout); */
   return tok;
 }
 
@@ -1095,20 +1058,16 @@ TOKEN makefor(int sign, TOKEN tok, TOKEN asg, TOKEN tokb, TOKEN endexpr, TOKEN t
   TOKEN goto_ = makegoto(labelnum);
   asg->link = label;
 
-
   TOKEN check = talloc();
   TOKEN s = talloc();
   s = makeprogn (s, statement);
-
 
   TOKEN ident = copytok(asg->operands);
   TOKEN ident2 = copytok(asg->operands);
   TOKEN ident3 = copytok(asg->operands);
 
-
   TOKEN comparison = 0;
   TOKEN step = 0;
-
 
   TOKEN assign = makeop(ASSIGNOP);
   if (sign == 1) {
@@ -1142,7 +1101,7 @@ TOKEN makefor(int sign, TOKEN tok, TOKEN asg, TOKEN tokb, TOKEN endexpr, TOKEN t
     printf("makefor\n");
     dbugprinttok(tok);
   }
-return tok;
+  return tok;
 }
 
 

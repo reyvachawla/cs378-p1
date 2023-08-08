@@ -1,114 +1,114 @@
 cons
- token 94817300249584  ID        output  dtype  0  link 0
+ token 94549039205360  ID        output  dtype  0  link 0
  token 0  NULL
 cons
- token 94817300258368  ID            im  dtype  0  link 0
+ token 94549039214144  ID            im  dtype  0  link 0
  token 0  NULL
 cons
- token 94817300258240  ID            re  dtype  0  link 94817300258368
- token 94817300258368  ID            im  dtype  0  link 0
+ token 94549039214016  ID            re  dtype  0  link 94549039214144
+ token 94549039214144  ID            im  dtype  0  link 0
 instfields
 instrec
 insttype
 cons
- token 94817300259520  ID          blue  dtype  0  link 0
+ token 94549039215296  ID          blue  dtype  0  link 0
  token 0  NULL
 cons
- token 94817300259392  ID         white  dtype  0  link 94817300259520
- token 94817300259520  ID          blue  dtype  0  link 0
+ token 94549039215168  ID         white  dtype  0  link 94549039215296
+ token 94549039215296  ID          blue  dtype  0  link 0
 cons
- token 94817300259264  ID           red  dtype  0  link 94817300259392
- token 94817300259392  ID         white  dtype  0  link 94817300259520
+ token 94549039215040  ID           red  dtype  0  link 94549039215168
+ token 94549039215168  ID         white  dtype  0  link 94549039215296
 makeintc
 makeintc
 makeintc
 subrange
 install enum
- token 94817300259264  ID           red  dtype  0  link 94817300259392
+ token 94549039215040  ID           red  dtype  0  link 94549039215168
 install enum
 insttype
 instpoint
 instpoint = 1
 insttype
 cons
- token 94817300261248  ID           age  dtype  0  link 0
+ token 94549039217024  ID           age  dtype  0  link 0
  token 0  NULL
 instfields
 cons
- token 94817300261504  ID        friend  dtype  0  link 0
+ token 94549039217280  ID        friend  dtype  0  link 0
  token 0  NULL
 instfields
 cons
- token 94817300261760  ID      location  dtype  0  link 0
+ token 94549039217536  ID      location  dtype  0  link 0
  token 0  NULL
 instfields
 cons
- token 94817300262016  ID      favorite  dtype  0  link 0
+ token 94549039217792  ID      favorite  dtype  0  link 0
  token 0  NULL
 instfields
 cons
- token 94817300262272  ID        salary  dtype  0  link 0
+ token 94549039218048  ID        salary  dtype  0  link 0
  token 0  NULL
 instfields
 instrec
 insttype
 cons
- token 94817300263616  ID             q  dtype  0  link 0
+ token 94549039219392  ID             q  dtype  0  link 0
  token 0  NULL
 cons
- token 94817300263488  ID             k  dtype  0  link 94817300263616
- token 94817300263616  ID             q  dtype  0  link 0
+ token 94549039219264  ID             k  dtype  0  link 94549039219392
+ token 94549039219392  ID             q  dtype  0  link 0
 cons
- token 94817300263360  ID             j  dtype  0  link 94817300263488
- token 94817300263488  ID             k  dtype  0  link 94817300263616
+ token 94549039219136  ID             j  dtype  0  link 94549039219264
+ token 94549039219264  ID             k  dtype  0  link 94549039219392
 cons
- token 94817300263232  ID             i  dtype  0  link 94817300263360
- token 94817300263360  ID             j  dtype  0  link 94817300263488
-0
+ token 94549039219008  ID             i  dtype  0  link 94549039219136
+ token 94549039219136  ID             j  dtype  0  link 94549039219264
+instvars = 1
 instvars
 cons
- token 94817300264256  ID            ac  dtype  0  link 0
+ token 94549039220032  ID            ac  dtype  0  link 0
  token 0  NULL
 subrange
 instdotdot
 cons
- token 94817300264576  typ  1  whic   8  dty   0  sty 94817300264704 lnk 0  opnds 0
+ token 94549039220352  typ  1  whic   8  dty   0  sty 94549039220480 lnk 0  opnds 0
  token 0  NULL
 instarray
-0
+instvars = 1
 instvars
 cons
- token 94817300265248  ID           acX  dtype  0  link 0
+ token 94549039221024  ID           acX  dtype  0  link 0
  token 0  NULL
 subrange
 instdotdot
 cons
- token 94817300265568  typ  1  whic   8  dty   0  sty 94817300265696 lnk 0  opnds 0
+ token 94549039221344  typ  1  whic   8  dty   0  sty 94549039221472 lnk 0  opnds 0
  token 0  NULL
 instarray
-0
+instvars = 1
 instvars
 cons
- token 94817300266240  ID        people  dtype  0  link 0
+ token 94549039222016  ID        people  dtype  0  link 0
  token 0  NULL
 subrange
 instdotdot
 cons
- token 94817300266560  typ  1  whic   8  dty   0  sty 94817300266688 lnk 0  opnds 0
+ token 94549039222336  typ  1  whic   8  dty   0  sty 94549039222464 lnk 0  opnds 0
  token 0  NULL
 instarray
-0
+instvars = 1
 instvars
 cons
- token 94817300267232  ID       peopleX  dtype  0  link 0
+ token 94549039223008  ID       peopleX  dtype  0  link 0
  token 0  NULL
 subrange
 instdotdot
 cons
- token 94817300267552  typ  1  whic   8  dty   0  sty 94817300267680 lnk 0  opnds 0
+ token 94549039223328  typ  1  whic   8  dty   0  sty 94549039223456 lnk 0  opnds 0
  token 0  NULL
 instarray
-0
+instvars = 1
 instvars
 findid
 findid
@@ -118,18 +118,18 @@ makeintc
 makeop
 makeop
 makearef
- token 94817300268800  OP          aref  dtype  0  link 0  operands 94817300268288
- token 94817300268288  ID            ac  dtype  0  link 94817300268736
+ token 94549039224576  OP          aref  dtype  0  link 0  operands 94549039224064
+ token 94549039224064  ID            ac  dtype  0  link 94549039224512
 makeintc
 makeintc
 makeop
 makearef
- token 94817300269120  OP          aref  dtype  0  link 0  operands 94817300268800
- token 94817300268800  OP          aref  dtype  0  link 94817300268992  operands 94817300268288
+ token 94549039224896  OP          aref  dtype  0  link 0  operands 94549039224576
+ token 94549039224576  OP          aref  dtype  0  link 94549039224768  operands 94549039224064
 binop
- token 94817300269184  OP            :=  dtype  1  link 0  operands 94817300269120
- token 94817300269120  OP          aref  dtype  1  link 94817300269248  operands 94817300268800
- token 94817300269248  NUM 4.500000e+00  dtype  1  link 0
+ token 94549039224960  OP            :=  dtype  1  link 0  operands 94549039224896
+ token 94549039224896  OP          aref  dtype  1  link 94549039225024  operands 94549039224576
+ token 94549039225024  NUM 4.500000e+00  dtype  1  link 0
 findid
 findid
 makeop
@@ -138,18 +138,18 @@ makeintc
 makeop
 makeop
 makearef
- token 94817300269888  OP          aref  dtype  0  link 0  operands 94817300269376
- token 94817300269376  ID        people  dtype  0  link 94817300269824
+ token 94549039225664  OP          aref  dtype  0  link 0  operands 94549039225152
+ token 94549039225152  ID        people  dtype  0  link 94549039225600
 makeintc
 makeintc
 makeop
 makearef
- token 94817300270208  OP          aref  dtype  0  link 0  operands 94817300269888
- token 94817300269888  OP          aref  dtype  0  link 94817300270080  operands 94817300269376
+ token 94549039225984  OP          aref  dtype  0  link 0  operands 94549039225664
+ token 94549039225664  OP          aref  dtype  0  link 94549039225856  operands 94549039225152
 binop
- token 94817300270272  OP            :=  dtype  1  link 0  operands 94817300270208
- token 94817300270208  OP          aref  dtype  1  link 94817300270336  operands 94817300269888
- token 94817300270336  NUM 1.000000e+02  dtype  1  link 0
+ token 94549039226048  OP            :=  dtype  1  link 0  operands 94549039225984
+ token 94549039225984  OP          aref  dtype  1  link 94549039226112  operands 94549039225664
+ token 94549039226112  NUM 1.000000e+02  dtype  1  link 0
 findid
 findid
 makeop
@@ -158,18 +158,18 @@ makeintc
 makeop
 makeop
 makearef
- token 94817300270976  OP          aref  dtype  0  link 0  operands 94817300270464
- token 94817300270464  ID           acX  dtype  0  link 94817300270912
+ token 94549039226752  OP          aref  dtype  0  link 0  operands 94549039226240
+ token 94549039226240  ID           acX  dtype  0  link 94549039226688
 makeintc
 makeintc
 makeop
 makearef
- token 94817300271296  OP          aref  dtype  0  link 0  operands 94817300270976
- token 94817300270976  OP          aref  dtype  0  link 94817300271168  operands 94817300270464
+ token 94549039227072  OP          aref  dtype  0  link 0  operands 94549039226752
+ token 94549039226752  OP          aref  dtype  0  link 94549039226944  operands 94549039226240
 binop
- token 94817300271360  OP            :=  dtype  1  link 0  operands 94817300271296
- token 94817300271296  OP          aref  dtype  1  link 94817300271424  operands 94817300270976
- token 94817300271424  NUM 5.400000e+00  dtype  1  link 0
+ token 94549039227136  OP            :=  dtype  1  link 0  operands 94549039227072
+ token 94549039227072  OP          aref  dtype  1  link 94549039227200  operands 94549039226752
+ token 94549039227200  NUM 5.400000e+00  dtype  1  link 0
 findid
 findid
 makeop
@@ -178,138 +178,138 @@ makeintc
 makeop
 makeop
 makearef
- token 94817300272064  OP          aref  dtype  0  link 0  operands 94817300271552
- token 94817300271552  ID       peopleX  dtype  0  link 94817300272000
+ token 94549039227840  OP          aref  dtype  0  link 0  operands 94549039227328
+ token 94549039227328  ID       peopleX  dtype  0  link 94549039227776
 makeintc
 makeintc
 makeop
 makearef
- token 94817300272384  OP          aref  dtype  0  link 0  operands 94817300272064
- token 94817300272064  OP          aref  dtype  0  link 94817300272256  operands 94817300271552
+ token 94549039228160  OP          aref  dtype  0  link 0  operands 94549039227840
+ token 94549039227840  OP          aref  dtype  0  link 94549039228032  operands 94549039227328
 binop
- token 94817300272448  OP            :=  dtype  1  link 0  operands 94817300272384
- token 94817300272384  OP          aref  dtype  1  link 94817300272512  operands 94817300272064
- token 94817300272512  NUM 1.357000e+03  dtype  1  link 0
+ token 94549039228224  OP            :=  dtype  1  link 0  operands 94549039228160
+ token 94549039228160  OP          aref  dtype  1  link 94549039228288  operands 94549039227840
+ token 94549039228288  NUM 1.357000e+03  dtype  1  link 0
 cons
- token 94817300272448  OP            :=  dtype  1  link 0  operands 94817300272384
+ token 94549039228224  OP            :=  dtype  1  link 0  operands 94549039228160
  token 0  NULL
 cons
- token 94817300271360  OP            :=  dtype  1  link 94817300272448  operands 94817300271296
- token 94817300272448  OP            :=  dtype  1  link 0  operands 94817300272384
+ token 94549039227136  OP            :=  dtype  1  link 94549039228224  operands 94549039227072
+ token 94549039228224  OP            :=  dtype  1  link 0  operands 94549039228160
 cons
- token 94817300270272  OP            :=  dtype  1  link 94817300271360  operands 94817300270208
- token 94817300271360  OP            :=  dtype  1  link 94817300272448  operands 94817300271296
+ token 94549039226048  OP            :=  dtype  1  link 94549039227136  operands 94549039225984
+ token 94549039227136  OP            :=  dtype  1  link 94549039228224  operands 94549039227072
 cons
- token 94817300269184  OP            :=  dtype  1  link 94817300270272  operands 94817300269120
- token 94817300270272  OP            :=  dtype  1  link 94817300271360  operands 94817300270208
+ token 94549039224960  OP            :=  dtype  1  link 94549039226048  operands 94549039224896
+ token 94549039226048  OP            :=  dtype  1  link 94549039227136  operands 94549039225984
 makeprogn
- token 94817300268224  OP         progn  dtype  0  link 0  operands 94817300269184
- token 94817300269184  OP            :=  dtype  1  link 94817300270272  operands 94817300269120
+ token 94549039224000  OP         progn  dtype  0  link 0  operands 94549039224960
+ token 94549039224960  OP            :=  dtype  1  link 94549039226048  operands 94549039224896
 makeprogn
- token 94817300272768  OP         progn  dtype  0  link 0  operands 94817300249584
- token 94817300249584  ID        output  dtype  0  link 0
+ token 94549039228544  OP         progn  dtype  0  link 0  operands 94549039205360
+ token 94549039205360  ID        output  dtype  0  link 0
 makeprogram
 Symbol table level 0
- 94817300218528        real  BASIC  basicdt   1          siz     8
- 94817300218624     integer  BASIC  basicdt   0          siz     4
- 94817300218720        char  BASIC  basicdt   2          siz     1
- 94817300218816     boolean  BASIC  basicdt   3          siz     4
- 94817300218912         exp  knd 5 0  typ 94817300219008  lvl  0  siz     0  off     0
+ 94549039174304        real  BASIC  basicdt   1          siz     8
+ 94549039174400     integer  BASIC  basicdt   0          siz     4
+ 94549039174496        char  BASIC  basicdt   2          siz     1
+ 94549039174592     boolean  BASIC  basicdt   3          siz     4
+ 94549039174688         exp  knd 5 0  typ 94549039174784  lvl  0  siz     0  off     0
 (FUNCTION real
           real)
- 94817300219200       trexp  knd 5 0  typ 94817300219296  lvl  0  siz     0  off     0
+ 94549039174976       trexp  knd 5 0  typ 94549039175072  lvl  0  siz     0  off     0
 (FUNCTION real
           real)
- 94817300219488         sin  knd 5 0  typ 94817300219584  lvl  0  siz     0  off     0
+ 94549039175264         sin  knd 5 0  typ 94549039175360  lvl  0  siz     0  off     0
 (FUNCTION real
           real)
- 94817300219776         cos  knd 5 0  typ 94817300219872  lvl  0  siz     0  off     0
+ 94549039175552         cos  knd 5 0  typ 94549039175648  lvl  0  siz     0  off     0
 (FUNCTION real
           real)
- 94817300220064       trsin  knd 5 0  typ 94817300220160  lvl  0  siz     0  off     0
+ 94549039175840       trsin  knd 5 0  typ 94549039175936  lvl  0  siz     0  off     0
 (FUNCTION real
           real)
- 94817300220352        sqrt  knd 5 0  typ 94817300220448  lvl  0  siz     0  off     0
+ 94549039176128        sqrt  knd 5 0  typ 94549039176224  lvl  0  siz     0  off     0
 (FUNCTION real
           real)
- 94817300220640       round  knd 5 0  typ 94817300220736  lvl  0  siz     0  off     0
+ 94549039176416       round  knd 5 0  typ 94549039176512  lvl  0  siz     0  off     0
 (FUNCTION real
           real)
- 94817300220928      iround  knd 5 0  typ 94817300221024  lvl  0  siz     0  off     0
+ 94549039176704      iround  knd 5 0  typ 94549039176800  lvl  0  siz     0  off     0
 (FUNCTION integer
           real)
- 94817300221216         ord  knd 5 0  typ 94817300221312  lvl  0  siz     0  off     0
-(FUNCTION integer
-          integer)
- 94817300221504         new  knd 5 0  typ 94817300221600  lvl  0  siz     0  off     0
+ 94549039176992         ord  knd 5 0  typ 94549039177088  lvl  0  siz     0  off     0
 (FUNCTION integer
           integer)
- 94817300221792       trnew  knd 5 0  typ 94817300221888  lvl  0  siz     0  off     0
+ 94549039177280         new  knd 5 0  typ 94549039177376  lvl  0  siz     0  off     0
 (FUNCTION integer
           integer)
- 94817300222080       write  knd 5 0  typ 94817300222176  lvl  0  siz     0  off     0
+ 94549039177568       trnew  knd 5 0  typ 94549039177664  lvl  0  siz     0  off     0
+(FUNCTION integer
+          integer)
+ 94549039177856       write  knd 5 0  typ 94549039177952  lvl  0  siz     0  off     0
 (FUNCTION NULL
           char)
- 94817300222368     writeln  knd 5 0  typ 94817300222464  lvl  0  siz     0  off     0
+ 94549039178144     writeln  knd 5 0  typ 94549039178240  lvl  0  siz     0  off     0
 (FUNCTION NULL
           char)
- 94817300222656      writef  knd 5 0  typ 94817300222752  lvl  0  siz     0  off     0
+ 94549039178432      writef  knd 5 0  typ 94549039178528  lvl  0  siz     0  off     0
 (FUNCTION NULL
           real)
- 94817300222944    writelnf  knd 5 0  typ 94817300223040  lvl  0  siz     0  off     0
+ 94549039178720    writelnf  knd 5 0  typ 94549039178816  lvl  0  siz     0  off     0
 (FUNCTION NULL
           real)
- 94817300223232      writei  knd 5 0  typ 94817300223328  lvl  0  siz     0  off     0
+ 94549039179008      writei  knd 5 0  typ 94549039179104  lvl  0  siz     0  off     0
 (FUNCTION NULL
           integer)
- 94817300223520    writelni  knd 5 0  typ 94817300223616  lvl  0  siz     0  off     0
+ 94549039179296    writelni  knd 5 0  typ 94549039179392  lvl  0  siz     0  off     0
 (FUNCTION NULL
           integer)
- 94817300223808        read  knd 5 0  typ 94817300223904  lvl  0  siz     0  off     0
+ 94549039179584        read  knd 5 0  typ 94549039179680  lvl  0  siz     0  off     0
 (FUNCTION NULL
           NULL)
- 94817300224096      readln  knd 5 0  typ 94817300224192  lvl  0  siz     0  off     0
+ 94549039179872      readln  knd 5 0  typ 94549039179968  lvl  0  siz     0  off     0
 (FUNCTION NULL
           NULL)
- 94817300224384         eof  knd 5 0  typ 94817300224480  lvl  0  siz     0  off     0
+ 94549039180160         eof  knd 5 0  typ 94549039180256  lvl  0  siz     0  off     0
 (FUNCTION boolean
           NULL)
 Symbol table level 1
- 94817300258912     complex  TYPE   typ 94817300258624  lvl  1  siz    16  off     0
+ 94549039214688     complex  TYPE   typ 94549039214400  lvl  1  siz    16  off     0
 (RECORD (re real)
         (im real))
- 94817300259776         red  CONST  typ INTEGER  val  0
- 94817300259936       white  CONST  typ INTEGER  val  1
- 94817300260096        blue  CONST  typ INTEGER  val  2
- 94817300260288       color  TYPE   typ 94817300260192  lvl  1  siz     4  off     0
+ 94549039215552         red  CONST  typ INTEGER  val  0
+ 94549039215712       white  CONST  typ INTEGER  val  1
+ 94549039215872        blue  CONST  typ INTEGER  val  2
+ 94549039216064       color  TYPE   typ 94549039215968  lvl  1  siz     4  off     0
   0 ..   2
- 94817300260704      person  TYPE   typ 94817300262528  lvl  1  siz    48  off     0
+ 94549039216480      person  TYPE   typ 94549039218304  lvl  1  siz    48  off     0
 (RECORD (age integer)
         (friend (^ person))
         (location (RECORD (re real)
                           (im real)))
         (favorite   0 ..   2)
         (salary real))
- 94817300260896          pp  TYPE   typ 94817300260800  lvl  1  siz     8  off     0
+ 94549039216672          pp  TYPE   typ 94549039216576  lvl  1  siz     8  off     0
 (^ person)
- 94817300263872           i  VAR    0 typ integer  lvl  1  siz     4  off     0
- 94817300263968           j  VAR    0 typ integer  lvl  1  siz     4  off     4
- 94817300264064           k  VAR    0 typ integer  lvl  1  siz     4  off     8
- 94817300264160           q  VAR    0 typ integer  lvl  1  siz     4  off    12
- 94817300265152          ac  VAR    0 typ 94817300265056  lvl  1  siz   160  off    16
+ 94549039219648           i  VAR    0 typ integer  lvl  1  siz     4  off     0
+ 94549039219744           j  VAR    0 typ integer  lvl  1  siz     4  off     4
+ 94549039219840           k  VAR    0 typ integer  lvl  1  siz     4  off     8
+ 94549039219936           q  VAR    0 typ integer  lvl  1  siz     4  off    12
+ 94549039220928          ac  VAR    0 typ 94549039220832  lvl  1  siz   160  off    16
 (ARRAY   1 ..  10 (RECORD (re real)
                           (im real)))
- 94817300266144         acX  VAR    0 typ 94817300266048  lvl  1  siz    64  off   176
+ 94549039221920         acX  VAR    0 typ 94549039221824  lvl  1  siz    64  off   176
 (ARRAY   2 ..   5 (RECORD (re real)
                           (im real)))
- 94817300267136      people  VAR    0 typ 94817300267040  lvl  1  siz   960  off   240
+ 94549039222912      people  VAR    0 typ 94549039222816  lvl  1  siz   960  off   240
 (ARRAY   1 ..  20 (RECORD (age integer)
                           (friend (^ person))
                           (location (RECORD (re real)
                                             (im real)))
                           (favorite   0 ..   2)
                           (salary real)))
- 94817300268128     peopleX  VAR    0 typ 94817300268032  lvl  1  siz   192  off  1200
+ 94549039223904     peopleX  VAR    0 typ 94549039223808  lvl  1  siz   192  off  1200
 (ARRAY   2 ..   5 (RECORD (age integer)
                           (friend (^ person))
                           (location (RECORD (re real)
@@ -317,7 +317,7 @@ Symbol table level 1
                           (favorite   0 ..   2)
                           (salary real)))
 yyparse result =        0
- token 94817300272704  OP       program  dtype  0  link 0  operands 94817300249456
+ token 94549039228480  OP       program  dtype  0  link 0  operands 94549039205232
 (program graph1 (progn output)
                 (progn (:= (aref (aref ac (+ -8
                                              (* 16
