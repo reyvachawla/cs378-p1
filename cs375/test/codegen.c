@@ -39,10 +39,10 @@ int nextlabel;    /* Next available label number */
 int stkframesize;   /* total stack frame size */
 int registers[32];
 
-int int_op[50];
-int point_op[50];
-int real_op[50];
-int jmp_op[50];
+int int_op[16];
+int point_op[16];
+int real_op[16];
+int jmp_op[16];
 
 /* Top-level entry for code generator.
    pcode    = pointer to code:  (program foo (output) (progn ...))
@@ -178,7 +178,7 @@ void used(int reg) {
 /* Trivial version */
 /* Generate code for arithmetic expression, return a register number */
 int genarith(TOKEN code)
-  {   int num, reg, reg2, reg3, offs, label;
+  {   int num, reg, reg2, offs, label;
       float float_num;
       TOKEN lhs, rhs;
      if (DEBUGGEN)
@@ -202,6 +202,11 @@ int genarith(TOKEN code)
             makeflit (float_num, label);
             asmldflit(MOVSD, label, reg);
             break;
+          case POINTER: // needed?
+          num = code->intval;
+          reg = getreg(WORD);
+          if ( num >= MINIMMEDIATE && num <= MAXIMMEDIATE )
+		        asmimmed(MOVQ, num, reg);
 	       }
 	   break;
        case IDENTIFIERTOK:
@@ -229,7 +234,6 @@ int genarith(TOKEN code)
         asmlitarg(label, reg);
         break;
       case OPERATOR:
-       // switch (code->whichval) {
         if (code->whichval == FUNCALLOP) {
           reg = genfun(code);
         }
@@ -246,7 +250,6 @@ int genarith(TOKEN code)
           asmfix(reg2, reg);
           unused(reg2);
         }
-       // switch (code->basicdt) {
         else if (code->basicdt == INTEGER) {
           lhs = code->operands;
           rhs = code->operands->link;

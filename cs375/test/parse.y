@@ -1114,5 +1114,5 @@ int main(void) /* */
   ppexpr(parseresult); /* Pretty-print the result tree */
   /* uncomment following to call code generator. */
 
-  // gencode(parseresult, blockoffs[blocknumber], labelnumber);
+  gencode(parseresult, blockoffs[blocknumber], labelnumber);
 }
