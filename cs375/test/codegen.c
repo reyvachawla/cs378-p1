@@ -39,10 +39,9 @@ int nextlabel;    /* Next available label number */
 int stkframesize;   /* total stack frame size */
 int registers[32];
 
-int int_op[16];
-int point_op[16];
-int real_op[16];
-int jmp_op[16];
+int int_op[17] = {0, ADDL, SUBL, IMULL, DIVL, 0, CMPL, CMPL, CMPL, CMPL, CMPL, CMPL, 0, 0, ANDL, ORL, NEGL};
+int real_op[17] = {0, ADDSD, SUBSD, MULSD, DIVSD, 0, CMPSD, CMPSD, CMPSD, CMPSD, CMPSD, CMPSD, 0, 0, NEGSD};
+int jmp_op[12] = {0, 0, 0, 0, 0, 0, JE, JNE, JL, JLE, JGE, JG};
 
 /* Top-level entry for code generator.
    pcode    = pointer to code:  (program foo (output) (progn ...))
@@ -56,7 +55,7 @@ your .s file.
          */
 
 void gencode(TOKEN pcode, int varsize, int maxlabel)
-  {  tablefiller();
+  { 
     TOKEN name, code;
      name = pcode->operands;
      code = name->link->link;
@@ -66,55 +65,6 @@ void gencode(TOKEN pcode, int varsize, int maxlabel)
      asmexit(name->stringval);
   }
 
-void tablefiller() {
-  int_op[PLUSOP] = ADDL;
-  int_op[MINUSOP] = SUBL;
-  int_op[TIMESOP] = IMULL;
-  int_op[DIVIDEOP] = DIVL;
-  int_op[ANDOP] = ANDL;
-  // int_op[NOTOP] = NEGL; // correct?
-  int_op[OROP] = ORL;
-  int_op[EQOP] = CMPL;
-  int_op[NEOP] = CMPL;
-  int_op[LTOP] = CMPL;
-  int_op[LEOP] = CMPL;
-  int_op[GEOP] = CMPL;
-  int_op[GTOP] = CMPL;
-
-  point_op[PLUSOP] = ADDQ;
-  point_op[MINUSOP] = SUBQ;
-  point_op[TIMESOP] = IMULQ;
-  point_op[ANDOP] = ANDQ;
-  // point_op[NOTOP] = NEGQ;
-  point_op[OROP] = ORQ;
-  point_op[NOTOP] = NOTQ;
-  point_op[EQOP] = CMPQ;
-  point_op[NEOP] = CMPQ;
-  point_op[LTOP] = CMPQ;
-  point_op[LEOP] = CMPQ;
-  point_op[GEOP] = CMPQ;
-  point_op[GTOP] = CMPQ;
-
-  real_op[PLUSOP] = ADDSD;
-  real_op[MINUSOP] = SUBSD;
-  real_op[TIMESOP] = MULSD;
-  real_op[DIVIDEOP] = DIVSD;
-  real_op[NOTOP] = NEGSD; // correct?
-  real_op[EQOP] = CMPSD;
-  real_op[NEOP] = CMPSD;
-  real_op[LTOP] = CMPSD;
-  real_op[LEOP] = CMPSD;
-  real_op[GEOP] = CMPSD;
-  real_op[GTOP] = CMPSD;
-
-  jmp_op[EQOP] = JE;
-  jmp_op[NEOP] = JNE;
-  jmp_op[LTOP] = JL;
-  jmp_op[LEOP] = JLE;
-  jmp_op[GEOP] = JGE;
-  jmp_op[GTOP] = JG;
-}
-
 /* Trivial version: always returns RBASE + 0 */
 /* Get a register.   */
 /* Need a type parameter or two versions for INTEGER or REAL */
@@ -122,18 +72,18 @@ int getreg(int kind)
   {
     int index;
     if (kind == WORD) {
-      for (int i = RBASE; i <= RMAX; i++) {
+      for (int i = 0; i < 4; i++) { // int reg
         // 0 means empty reg
         if (registers[i] == 0) {
-          used(i);
+          registers[i] = 1;
           index = i;
           break;
         }
       }
     } else if (kind == FLOAT) {
-      for (int i = FBASE; i <= FMAX; i++) {
+      for (int i = 16; i < 32; i++) { // float reg
         if (registers[i] == 0) {
-          used(i);
+          registers[i] = 1;
           index = i;
           break;
         }
@@ -198,11 +148,12 @@ int genarith(TOKEN code)
 	        case REAL:
             float_num = code->realval;
             reg = getreg(FLOAT);
-            int label = nextlabel++;
+            int label = nextlabel;
+            nextlabel++;
             makeflit (float_num, label);
             asmldflit(MOVSD, label, reg);
             break;
-          case POINTER: // needed?
+          case POINTER: 
           num = code->intval;
           reg = getreg(WORD);
           if ( num >= MINIMMEDIATE && num <= MAXIMMEDIATE )
@@ -210,7 +161,7 @@ int genarith(TOKEN code)
 	       }
 	   break;
        case IDENTIFIERTOK:
-       // loading
+       // load 
        offs = code->symentry->offset - stkframesize;
        switch (code->basicdt) {
         case INTEGER:
@@ -219,7 +170,7 @@ int genarith(TOKEN code)
         break;
         case POINTER:
           reg = getreg(WORD);
-          asmld(MOVQ, offs, reg, code->stringval); // correct?
+          asmld(MOVQ, offs, reg, code->stringval);
         break;
         case REAL:
           reg = getreg(FLOAT);
@@ -228,7 +179,8 @@ int genarith(TOKEN code)
        }
 	   break;
       case STRINGTOK: 
-        label = nextlabel++;  
+        label = nextlabel;
+        nextlabel++;
         makeblit(code->stringval, label);
         reg = EDI;
         asmlitarg(label, reg);
@@ -236,26 +188,24 @@ int genarith(TOKEN code)
       case OPERATOR:
         if (code->whichval == FUNCALLOP) {
           reg = genfun(code);
-        }
-        else if (code->whichval == FLOATOP) {
-          lhs = code->operands;
-          reg = getreg(FLOAT);
-          reg2 = genarith(lhs);
-          asmfloat(reg2, reg);
-          unused(reg2);
         } else if (code->whichval == FIXOP) {
           lhs = code->operands;
           reg = getreg(WORD);
           reg2 = genarith(lhs);
           asmfix(reg2, reg);
           unused(reg2);
-        }
-        else if (code->basicdt == INTEGER) {
+        } else if (code->whichval == FLOATOP) {
+          lhs = code->operands;
+          reg = getreg(FLOAT);
+          reg2 = genarith(lhs);
+          asmfloat(reg2, reg);
+          unused(reg2);
+        } else if (code->basicdt == INTEGER) {
           lhs = code->operands;
           rhs = code->operands->link;
           reg = genarith(lhs);
-          if (rhs) {
-            if (funcallin(rhs)) {
+          if (rhs != NULL) {
+            if (funcallin(rhs) == 1) {
               asmsttemp(reg);
               unused(reg);
               reg2 = genarith(rhs);
@@ -278,20 +228,20 @@ int genarith(TOKEN code)
           lhs = code->operands;
           rhs = code->operands->link;
           reg = genarith(lhs);
-          if (rhs) {
-            if (funcallin(rhs)) {
-              asmsttemp(reg);
+          if (rhs != NULL) {
+            if (funcallin(rhs) == 1) {
+              asmsttemp(reg); // save left
               unused(reg);
-              reg2 = genarith(rhs);
-              asmldtemp(reg);
-              asmrr(real_op[code->whichval], reg2, reg);
-              unused(reg2);
+              reg2 = genarith(rhs); // get right
+              asmldtemp(reg); // get left
+              asmrr(real_op[code->whichval], reg2, reg); // do op
+              unused(reg2); // free right
             } else {
               reg2 = genarith(rhs);     
               asmrr(real_op[code->whichval], reg2, reg); 
               unused(reg2);
             }
-          } else {
+          } else { 
             reg2 = getreg(FLOAT);
             asmfneg(reg, reg2);
             reg = reg2;
@@ -305,7 +255,6 @@ int genarith(TOKEN code)
 
 /* test if there is a function call within code: 1 if true, else 0 */
 int funcallin(TOKEN code) {
-  // change to while loop?
    if (code->whichval == FUNCALLOP) {
     return 1;
   } else if (code->link) {
@@ -324,7 +273,7 @@ void genc(TOKEN code)
   {  TOKEN tok, lhs, rhs;
      int reg, offs;
      SYMBOL sym;
-     clearreg();
+     clearreg(); // clear reg at start of statement
      if (DEBUGGEN)
        { printf("genc\n");
 	      dbugprinttok(code);
@@ -335,13 +284,13 @@ void genc(TOKEN code)
 	        dbugprinttok(code);
           fflush(stdout);
 	      };
-     switch ( code->whichval )
-       { case PROGNOP:
+     switch ( code->whichval ) { 
+    case PROGNOP:
 	   tok = code->operands;
-	   while ( tok != NULL )
-	     {  genc(tok);
-		tok = tok->link;
-	      };
+	   while (tok != NULL ){  
+      genc(tok);
+		  tok = tok->link;
+	   };
 	   break;
 	 case ASSIGNOP:                   /* Trivial version: handles I := e */
 	   lhs = code->operands;
@@ -350,14 +299,15 @@ void genc(TOKEN code)
 	   sym = lhs->symentry;              /* assumes lhs is a simple var  */
 	   offs = sym->offset - stkframesize; /* net offset of the var   */
            switch (code->basicdt)            /* store value into lhs  */
-             { case INTEGER:
-                 asmst(MOVL, reg, offs, lhs->stringval);
+             { case INTEGER: case POINTER:
+                 if(sym->datatype->kind == POINTERSYM) {
+                    asmst(MOVQ, reg, offs, lhs->stringval);
+                 } else {
+                    asmst(MOVL, reg, offs, lhs->stringval);
+                 }
                  break;
                case REAL:
                  asmst(MOVSD, reg, offs, lhs->stringval);
-                 break;
-                case POINTER:
-                asmst(MOVQ, reg, offs, lhs->stringval);
                  break;
              };
            break;
@@ -365,7 +315,7 @@ void genc(TOKEN code)
     genfun(code);
 	   break;
 	 case GOTOOP:
-    asmjump (JMP,code->operands->intval);
+    asmjump (JMP, code->operands->intval);
 	   break;
 	 case LABELOP:
      asmlabel(code->operands->intval);
@@ -375,8 +325,10 @@ void genc(TOKEN code)
     genarith(tok);
     lhs = tok->link; // then
     rhs = tok->link->link; // else
-    int label1 = nextlabel++;
-    int end = nextlabel++;
+    int label1 = nextlabel;
+    nextlabel++;
+    int end = nextlabel;
+    nextlabel++;
     int op = tok->whichval;
     asmjump(jmp_op[op], label1);
     if (rhs) {
@@ -392,29 +344,23 @@ void genc(TOKEN code)
 
   /* Generate code for a function call */
 int genfun(TOKEN code) {
-  // check
-  TOKEN tok = code->operands; //FUNCTION
-    TOKEN lhs = tok->link;  //FIRST ARGUMENT
-    int count = 0;
-    while (lhs) {
+    TOKEN tok = code->operands; // fn
+    TOKEN lhs = code->operands->link;  // first arg
+
+    while (lhs) { // continue generaith for args
       genarith(lhs);        
       lhs = lhs->link;
-      count ++;
     }
 
     asmcall(tok->stringval);  
-    SYMBOL sym = searchst(tok->stringval);
-
-    if (DEBUGGEN) {
-      printf("genfunc\n");
-      dbugprinttok(code);
-      fflush(stdout);
-    }
-    if (sym->datatype->basicdt == REAL) {
-      return XMM0;
-    } else if (sym->datatype->basicdt == INTEGER) {
+    SYMBOL fn = searchst(tok->stringval);
+  
+    if (fn->datatype->basicdt == INTEGER) {
       return EAX;
+    } else if (fn->datatype->basicdt == REAL) {
+      return XMM0;
     } else {
       return RAX;
     }
 }
+

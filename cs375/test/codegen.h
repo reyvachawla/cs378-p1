@@ -13,8 +13,6 @@ int genarith(TOKEN code);
 /* Generate code for a statement */
 void genc(TOKEN code);
 
-void tablefiller();
-
 
 /* You may use the function headers below if you wish,
    or you may replace them if you wish.  */

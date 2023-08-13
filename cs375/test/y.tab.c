@@ -2393,7 +2393,7 @@ TOKEN binop(TOKEN op, TOKEN lhs, TOKEN rhs) /* reduce binary operator */
     op->basicdt = REAL;
   } else if (lhs->basicdt == REAL && rhs->basicdt == INTEGER) {
     op->basicdt = REAL;
-    TOKEN floattok = makefloat (rhs);
+    TOKEN floattok = makefloat(rhs);
     lhs->link = floattok;
   } else if (lhs->basicdt == INTEGER && rhs->basicdt == REAL) {
     if (op->whichval == ASSIGNOP) {
@@ -2513,7 +2513,7 @@ TOKEN makefuncall(TOKEN tok, TOKEN fn, TOKEN args) {
           strcpy(fn->stringval, "writelni");
         } else if (args->basicdt == REAL) {
           strcpy(fn->stringval, "writelnf");
-        } else if (args->tokentype == STRINGTOK) {
+        } else {
           strcpy(fn->stringval, "writeln");
         }
       }
@@ -2527,6 +2527,9 @@ TOKEN makefuncall(TOKEN tok, TOKEN fn, TOKEN args) {
 
   SYMBOL typ = sym->datatype->datatype;
   fn->symtype = typ;
+
+  tok->symtype = fn->symtype;
+  tok->symentry = fn->symentry;
 
   if (DEBUG && DB_MAKEFUNCALL) {
     printf("makefuncall\n");
@@ -3049,5 +3052,5 @@ int main(void) /* */
   ppexpr(parseresult); /* Pretty-print the result tree */
   /* uncomment following to call code generator. */
 
-  gencode(parseresult, blockoffs[blocknumber], labelnumber);
+   gencode(parseresult, blockoffs[blocknumber], labelnumber);
 }
